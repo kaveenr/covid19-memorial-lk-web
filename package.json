@@ -13,6 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@netlify/plugin-nextjs": "^3.9.0",
     "@tailwindcss/typography": "^0.4.1",
+    "lodash": "^4.17.21",
     "next": "latest",
     "next-intl": "^2.0.1",
     "react": "^17.0.2",

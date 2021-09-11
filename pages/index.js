@@ -3,7 +3,6 @@ import Head from 'next/head'
 export default function Home(props) {
 
   const items = props.data;
-  console.log(items);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
