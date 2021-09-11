@@ -1,7 +1,7 @@
 module.exports = {
     target: "serverless",
     i18n: {
-        locales: ['en', 'si', 'ta'],
+        locales: ['en'],
         defaultLocale: 'en',
     },
 }
