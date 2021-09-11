@@ -1,10 +1,14 @@
 import 'tailwindcss/tailwind.css'
+import Header from '../components/Header'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className={"md:container mx-auto px-4 py-1 h-screen"}>
-      <Component {...pageProps} />
-    </div>
+    <>
+      <Header />
+      <div className={"md:container mx-auto px-4 py-1 h-screen"}>
+        <Component {...pageProps} />
+      </div>
+    </>
   )
 }
 
