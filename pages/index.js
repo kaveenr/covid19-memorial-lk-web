@@ -42,12 +42,18 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
-        {items.map((i) => (<div key={i.id} className="py-4 flex flex-col items-center">
-          <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
-          <p className="text-sm font-semibold">{i.attributes.ageValue} year {i.attributes.gender}</p>
-          <p className="text-sm">{i.attributes.district}</p>
-        </div>))}
+      <main>
+        <div className="bg-gray-100 p-4 rounded-lg">
+          <p className="text-sm font-semibold mb-1">{props.count} Lorem ipsum dolor sit amet.</p>
+          <p className="text-sm">Vivamus finibus, tortor in facilisis tempus, velit urna efficitur risus, id sodales ligula est eget lorem.</p>
+        </div>
+        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
+          {items.map((i) => (<div key={i.id} className="py-4 flex flex-col items-center">
+            <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
+            <p className="text-sm font-semibold">{i.attributes.ageValue} year {i.attributes.gender}</p>
+            <p className="text-sm">{i.attributes.district}</p>
+          </div>))}
+        </div>
       </main>
       <div key="loader" ref={loader} className="text-center text-lg font-semibold">
           {isFetching? (<p>Loading...</p>) : []}
@@ -57,15 +63,17 @@ export default function Home(props) {
 }
 
 export function getStaticProps({locale}) {
+  const rawData = require('../data/latest.json');
   return {
     props: {
       // Preload initial data 
       data: {
-        data: slice(require('../data/latest.json'),0,100),
+        data: slice(rawData,0,100),
         links: {
           next: '/api/entries?offset=1'
         }
       },
+      count: rawData.length,
       messages: {
         ...require(`../lang/${locale}.json`),
       },
