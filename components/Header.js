@@ -19,7 +19,7 @@ const Header = () => {
     }
 
     return (<>
-        <header className="bg-pink-100 sticky top-0 z-50">
+        <header className="bg-primary sticky top-0 z-50">
             <div className="flex h-full container md:w-kw mx-auto px-4 py-3 ">
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
@@ -35,7 +35,7 @@ const Header = () => {
                     </a>
                 </div>
             </div>
-            <nav className={`bg-pink-200 px-5 md:h-auto md:visible ${menuEnabled ? '': 'h-0 invisible'}`}>
+            <nav className={`bg-primary px-5 md:h-auto md:visible ${menuEnabled ? '': 'h-0 invisible'}`}>
                 <ul className="flex justify-between flex-col sm:flex-row text-left sm:text-center container md:w-kw mx-auto font-bold">
                     <li className="flex-grow py-2" ><Link href="/category/[slug]" as="/category/life">Data Collection</Link></li>
                     <li className="flex-grow py-2" ><Link href="/[slug]" as="/about">About</Link></li>
