@@ -36,15 +36,15 @@ export default function Home(props) {
   }, "40%", loader);
 
   return (
-    <div className="flex flex-col items-center justify-center py-2">
+    <>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-4">
+      <main className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
         {items.map((i) => (<div key={i.id} className="py-4 flex flex-col items-center">
-          <img src="/img/placeholder-flower.jpg" className="flex-grow w-24"/>
+          <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
           <p className="text-sm font-semibold">{i.attributes.ageValue} year {i.attributes.gender}</p>
           <p className="text-sm">{i.attributes.district}</p>
         </div>))}
@@ -52,7 +52,7 @@ export default function Home(props) {
       <div key="loader" ref={loader} className="text-center text-lg font-semibold">
           {isFetching? (<p>Loading...</p>) : []}
         </div>
-    </div>
+    </>
   )
 }
 
