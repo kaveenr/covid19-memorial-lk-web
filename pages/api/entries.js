@@ -19,11 +19,7 @@ export default function dataAPI(req, res) {
   }
 
   res.status(200).json({
-    data : slicedData.map((item) => ({
-      type: "entry",
-      id: item.indexKey,
-      attributes: item
-    })),
+    data : slicedData,
     links: links
   })
 }
