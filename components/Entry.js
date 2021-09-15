@@ -7,7 +7,8 @@ const Entry = ({ data }) => {
     return (
         <div className="relative" onMouseOver={(e) => (setDetailVisible(true))} onMouseLeave={(e) => (setDetailVisible(false))}>
             <Link href={`/entry/${data.id}`}>
-                <a key={data.id} className="py-4 flex flex-col items-center relative hover:scale-125 transition-transform duration-700 ease-out">
+                <a key={data.id} 
+                    className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-125 transition-transform duration-700 ease-out`}>
                     <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
                     <p className="text-sm font-semibold">{data.attributes.ageValue} year {data.attributes.gender}</p>
                     <p className="text-sm">{data.attributes.district}</p>
