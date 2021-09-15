@@ -2,5 +2,13 @@
     {
         "slug": "about",
         "locale": "en"
+    },
+    {
+        "slug": "about",
+        "locale": "si"
+    },
+    {
+        "slug": "about",
+        "locale": "ta"
     }
 ]

@@ -2,5 +2,22 @@
     "header": {
         "title": "Sri Lanka",
         "subtitle": "COVID-19 Memorial"
+    },
+    "home": {
+        "title": "{total} people lost their lives to the pandemic.",
+        "subtitle": "This memorial has processed {count} individuals.",
+        "loading": "Loading"
+    },
+    "navigation": {
+        "about": "About",
+        "submit": "Submit",
+        "methodology": "Methodology"
+    },
+    "footer": {
+        "copyright": "Copyright"
+    },
+    "entry": {
+        "Male": "Male",
+        "Female": "Female"
     }
 }

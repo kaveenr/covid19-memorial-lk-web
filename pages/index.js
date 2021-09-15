@@ -9,6 +9,7 @@ import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { useTranslations } from 'use-intl';
 
 export default function Home(props) {
 
@@ -16,6 +17,7 @@ export default function Home(props) {
   const loader = useRef(null);
   const [items, setItems] = useState([]);
   const [offset, setOffset] = useState(0);
+  const t = useTranslations('home');
 
   // Fetch Entries, on initial offset use rendered dataset.
   const { status, data, error, isFetching } = useQuery(['entries', offset],
@@ -51,8 +53,8 @@ export default function Home(props) {
         <div className="bg-white rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title">{props.cumDeaths.toLocaleString("en")} people lost their lives to the pandemic.</h2> 
-              <p>This memorial has processed {props.count.toLocaleString("en")} individuals.</p> 
+              <h2 className="card-title">{t('title', {total:props.cumDeaths.toLocaleString("en")})}</h2> 
+              <p>{t('subtitle', {count:props.count.toLocaleString("en")})}</p> 
               {/* <div className="card-actions">
                 <button className="btn btn-primary">More info</button>
               </div> */}
@@ -66,7 +68,7 @@ export default function Home(props) {
       <div key="loader" ref={loader}>
           {isFetching? (<div className="text-center text-lg font-semibold px-4">
             <FontAwesomeIcon className="animate-spin w-5 h-5 text-gray-900" icon={faSpinner} />
-            <p>Loading</p>
+            <p>{t('loading')}</p>
           </div>) : []}
       </div>
       <Footer/>

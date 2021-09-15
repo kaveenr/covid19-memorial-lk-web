@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { useState } from "react";
+import { useTranslations } from "use-intl";
 
 const Entry = ({ data }) => {
 
     const [detailVisible, setDetailVisible] = useState(false);
+    const t = useTranslations('entry');
     
     // Overcomplicated tool tip clipping solution.
     const [tooltipDir, setTooltipDir] = useState(true);
@@ -24,7 +26,7 @@ const Entry = ({ data }) => {
                 <a 
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                     <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
-                    <p className="text-sm font-semibold mt-1">{data.attributes.ageValue} {data.attributes.gender}</p>
+                    <p className="text-sm font-semibold mt-1">{data.attributes.ageValue} {t(data.attributes.gender)}</p>
                     <p className="text-sm">{new Date(data.attributes.deathDate).toLocaleDateString("si")}</p>
                 </a>
             </Link>

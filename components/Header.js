@@ -4,25 +4,30 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/dist/client/router'
+import { useTranslations } from 'next-intl'
 
-const NavBar = () => (
-    <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
-        <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
-            <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">Methodology</a></Link>
-        </li>
-        <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
-            <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">Submit</a></Link>
-        </li>
-        <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-            <Link href="/[slug]" as="/about"><a className="hover:underline">About</a></Link>
-        </li>
-    </ul>
-)
+const NavBar = () => {
+    const t = useTranslations('navigation');
+    return (
+        <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
+            <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">{t('methodology')}</a></Link>
+            </li>
+            <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">{t('submit')}</a></Link>
+            </li>
+            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
+            </li>
+        </ul>
+    );
+}
 
 const Header = () => {
 
     const [menuEnabled, setMenu] = useState(false);
     const { locale, asPath } = useRouter();
+    const t = useTranslations('header');
 
     const shareDialog = () => {
         navigator.share({
@@ -39,8 +44,8 @@ const Header = () => {
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
                         <a>
-                            <p>Sri Lanka</p>
-                            <p><b>COVID-19 Memorial</b></p>
+                            <p>{t('title')}</p>
+                            <p><b>{t('subtitle')}</b></p>
                         </a>
                     </Link>
                 </div>
