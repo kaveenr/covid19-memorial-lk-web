@@ -14,7 +14,7 @@ const NavBar = () => (
             <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">Submit</a></Link>
         </li>
         <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-            <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">About</a></Link>
+            <Link href="/[slug]" as="/about"><a className="hover:underline">About</a></Link>
         </li>
     </ul>
 )

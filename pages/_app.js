@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
 
   const queryClient = new QueryClient()
   return (
-    <div className="bg-primary">
+    <div className="bg-primary min-h-screen">
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
       </QueryClientProvider>

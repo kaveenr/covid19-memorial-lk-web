@@ -41,25 +41,24 @@ export default function Home(props) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>COVID-19 Memorial</title>
       </Head>
 
       <Header />
       <main className={"md:container mx-auto px-4 py-1"}>
         <div className="bg-white rounded-xl my-1 lg:my-4">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">{props.count} Lorem ipsum dolor sit amet.</h2> 
+          <div className="card">
+            <div className="card-body">
+              <h2 className="card-title">{props.count} Lorem ipsum dolor sit amet.</h2> 
               <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.</p> 
-              {/* <div class="card-actions">
-                <button class="btn btn-primary">More info</button>
+              {/* <div className="card-actions">
+                <button className="btn btn-primary">More info</button>
               </div> */}
             </div>
           </div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
-          {items.map((i) => (<Entry data={i}/>))}
+          {items.map((i) => (<Entry key={i.id} data={i}/>))}
         </div>
       </main>
       <div key="loader" ref={loader} className="text-center text-lg font-semibold">
