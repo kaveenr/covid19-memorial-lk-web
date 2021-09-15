@@ -38,10 +38,10 @@ const Header = () => {
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
-                        <div>
+                        <a>
                             <p>Sri Lanka</p>
                             <p><b>COVID-19 Memorial</b></p>
-                        </div>
+                        </a>
                     </Link>
                 </div>
                 <div className="flex-grow-0 flex flex-wrap content-center hidden lg:block">

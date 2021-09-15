@@ -24,7 +24,7 @@ const Entry = ({ data }) => {
                 <a 
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                     <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
-                    <p className="text-sm font-semibold">{data.attributes.ageValue} year {data.attributes.gender}</p>
+                    <p className="text-sm font-semibold mt-1">{data.attributes.ageValue} {data.attributes.gender}</p>
                     <p className="text-sm">{new Date(data.attributes.deathDate).toLocaleDateString("si")}</p>
                 </a>
             </Link>

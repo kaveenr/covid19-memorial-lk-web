@@ -1,4 +1,4 @@
-import { slice } from 'lodash';
+import { last, slice, toInteger } from 'lodash';
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
@@ -7,6 +7,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home(props) {
 
@@ -49,8 +51,8 @@ export default function Home(props) {
         <div className="bg-white rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title">{props.count} Lorem ipsum dolor sit amet.</h2> 
-              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.</p> 
+              <h2 className="card-title">{props.cumDeaths.toLocaleString("en")} people lost their lives to the pandemic.</h2> 
+              <p>This memorial has processed {props.count.toLocaleString("en")} individuals.</p> 
               {/* <div className="card-actions">
                 <button className="btn btn-primary">More info</button>
               </div> */}
@@ -61,8 +63,11 @@ export default function Home(props) {
           {items.map((i) => (<Entry key={i.id} data={i}/>))}
         </div>
       </main>
-      <div key="loader" ref={loader} className="text-center text-lg font-semibold">
-          {isFetching? (<p>Loading...</p>) : []}
+      <div key="loader" ref={loader}>
+          {isFetching? (<div className="text-center text-lg font-semibold px-4">
+            <FontAwesomeIcon className="animate-spin w-5 h-5 text-gray-900" icon={faSpinner} />
+            <p>Loading</p>
+          </div>) : []}
       </div>
       <Footer/>
     </>
@@ -71,16 +76,18 @@ export default function Home(props) {
 
 export function getStaticProps({locale}) {
   const rawData = require('../data/latest.json');
+  const keyData = require('../data/keys_latest.json');
   return {
     props: {
       // Preload initial data 
       data: {
-        data: slice(rawData,0,100),
+        data: slice(rawData,0,50),
         links: {
           next: '/api/entries?offset=1'
         }
       },
       count: rawData.length,
+      cumDeaths: last(keyData).cumDeaths,
       messages: {
         ...require(`../lang/${locale}.json`),
       },

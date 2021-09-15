@@ -19,6 +19,15 @@ async function fetchData(){
   }));
 
   fs.writeFileSync("./data/latest.json", JSON.stringify(data, null, 4));
+
+  const rawKeyData = await request({
+    'method': 'GET',
+    'url': 'https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/data/data/user_keys_latest.json',
+  }).catch((e)=> {
+    throw Error("Unable to fetch vax centers");
+  }).then((response) => (JSON.parse(response.body)));
+
+  fs.writeFileSync("./data/keys_latest.json", JSON.stringify(rawKeyData, null, 4));
 }
 
 fetchData();
