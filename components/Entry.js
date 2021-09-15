@@ -8,16 +8,16 @@ const Entry = ({ data }) => {
     
     // Overcomplicated tool tip clipping solution.
     const [tooltipDir, setTooltipDir] = useState(true);
-    const itemPos = useRef();
-    // useEffect(() => {
-    //     const offset = (100 * itemPos.current.offsetLeft) / window.innerWidth;
-    //     if (offset > 80) {
-    //         setTooltipDir(false);
-    //     }
-    // }, [])
+    const handleHover = (e) => {
+        const offset = (100 * e.clientX) / window.innerWidth;
+        if (offset > 80) {
+            setTooltipDir(false);
+        }
+        setDetailVisible(true);
+    }
 
     return (
-        <div key={data.id} className="relative" onMouseOver={(e) => (setDetailVisible(true))} onMouseLeave={(e) => (setDetailVisible(false))} ref={itemPos}>
+        <div key={data.id} className="relative" onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
             <Link href={`/entry/${data.id}`}>
                 <a 
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import Entry from '../components/Entry';
+import Header from '../components/Header';
 import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 
@@ -43,7 +44,8 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Header />
+      <main className={"md:container mx-auto px-4 py-1"}>
         <div className="bg-white rounded-xl my-1 lg:my-4">
           <div class="card">
             <div class="card-body">
