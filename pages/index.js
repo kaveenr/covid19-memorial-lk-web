@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import Entry from '../components/Entry';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
@@ -64,6 +65,7 @@ export default function Home(props) {
       <div key="loader" ref={loader} className="text-center text-lg font-semibold">
           {isFetching? (<p>Loading...</p>) : []}
       </div>
+      <Footer/>
     </>
   )
 }

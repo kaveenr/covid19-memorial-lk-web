@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { useRef, useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useState } from "react";
 
 const Entry = ({ data }) => {
 
