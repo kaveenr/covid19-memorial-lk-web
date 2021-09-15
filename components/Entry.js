@@ -9,12 +9,12 @@ const Entry = ({ data }) => {
     // Overcomplicated tool tip clipping solution.
     const [tooltipDir, setTooltipDir] = useState(true);
     const itemPos = useRef();
-    useEffect(() => {
-        const offset = (100 * itemPos.current.offsetLeft) / window.innerWidth;
-        if (offset > 80) {
-            setTooltipDir(false);
-        }
-    }, [])
+    // useEffect(() => {
+    //     const offset = (100 * itemPos.current.offsetLeft) / window.innerWidth;
+    //     if (offset > 80) {
+    //         setTooltipDir(false);
+    //     }
+    // }, [])
 
     return (
         <div key={data.id} className="relative" onMouseOver={(e) => (setDetailVisible(true))} onMouseLeave={(e) => (setDetailVisible(false))} ref={itemPos}>
