@@ -1,8 +1,8 @@
 import { slice } from 'lodash';
 import Head from 'next/head'
-import Link from "next/link"
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
+import Entry from '../components/Entry';
 import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 
@@ -49,18 +49,12 @@ export default function Home(props) {
           <p className="text-sm">Vivamus finibus, tortor in facilisis tempus, velit urna efficitur risus, id sodales ligula est eget lorem.</p>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
-          {items.map((i) => (<Link href={`/entry/${i.id}`}>
-            <a key={i.id} className="py-4 flex flex-col items-center hover:scale-125 transition-transform duration-700 ease-out">
-              <img src="/img/placeholder-flower.jpg" className="flex-grow w-full"/>
-              <p className="text-sm font-semibold">{i.attributes.ageValue} year {i.attributes.gender}</p>
-              <p className="text-sm">{i.attributes.district}</p> 
-            </a>
-          </Link>))}
+          {items.map((i) => (<Entry data={i}/>))}
         </div>
       </main>
       <div key="loader" ref={loader} className="text-center text-lg font-semibold">
           {isFetching? (<p>Loading...</p>) : []}
-        </div>
+      </div>
     </>
   )
 }
