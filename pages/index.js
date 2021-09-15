@@ -44,9 +44,16 @@ export default function Home(props) {
       </Head>
 
       <main>
-        <div className="bg-gray-100 p-4 rounded-lg">
-          <p className="text-sm font-semibold mb-1">{props.count} Lorem ipsum dolor sit amet.</p>
-          <p className="text-sm">Vivamus finibus, tortor in facilisis tempus, velit urna efficitur risus, id sodales ligula est eget lorem.</p>
+        <div className="bg-white rounded-xl my-1 lg:my-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">{props.count} Lorem ipsum dolor sit amet.</h2> 
+              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.</p> 
+              {/* <div class="card-actions">
+                <button class="btn btn-primary">More info</button>
+              </div> */}
+            </div>
+          </div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
           {items.map((i) => (<Entry data={i}/>))}
