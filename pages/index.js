@@ -9,7 +9,7 @@ import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { useTranslations } from 'use-intl';
+import { useIntl, useTranslations } from 'use-intl';
 
 export default function Home(props) {
 
@@ -18,6 +18,7 @@ export default function Home(props) {
   const [items, setItems] = useState([]);
   const [offset, setOffset] = useState(0);
   const t = useTranslations('home');
+  const intl = useIntl();
 
   // Fetch Entries, on initial offset use rendered dataset.
   const { status, data, error, isFetching } = useQuery(['entries', offset],
@@ -53,8 +54,8 @@ export default function Home(props) {
         <div className="bg-white rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title">{t('title', {total:props.cumDeaths.toLocaleString("en")})}</h2> 
-              <p>{t('subtitle', {count:props.count.toLocaleString("en")})}</p> 
+              <h2 className="card-title">{t('title', {total: intl.formatNumber(props.cumDeaths)})}</h2> 
+              <p>{t('subtitle', {count: intl.formatNumber(props.count)})}</p> 
               {/* <div className="card-actions">
                 <button className="btn btn-primary">More info</button>
               </div> */}
