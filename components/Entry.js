@@ -14,7 +14,7 @@ const Entry = ({ data }) => {
                     <p className="text-sm">{new Date(data.attributes.deathDate).toLocaleDateString("si")}</p>
                 </a>
             </Link>
-            <div className={`invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 bg-white rounded-tr-lg rounded-br-lg rounded-bl-lg w-60"} absolute top-1/3 left-1/2 transition-opacity duration-150 ease-in-out`}>
+            <div className={`invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 bg-white rounded-xl w-60"} absolute top-1/3 left-1/2 transition-opacity duration-150 ease-in-out`}>
                     <p><b>Province:</b> {data.attributes.province}</p>
                     <p><b>District:</b> {data.attributes.district}</p>
                     <p><b>City:</b> {data.attributes.city}</p>
