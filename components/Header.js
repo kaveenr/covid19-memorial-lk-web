@@ -8,15 +8,22 @@ import { useTranslations } from 'next-intl'
 import { useEffect } from 'react/cjs/react.development'
 
 const ThemeSwitcher = () => {
+    
     const [isLight, setIsLight] = useState(true);
     useEffect(() => {
         document.getElementById("docHtml").setAttribute("data-theme", isLight ? 'light' : 'dark');
     }, [isLight]);
 
+    const darkModeListener = (event) => {
+        setIsLight(!event.matches);
+    }
+
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches){
             setIsLight(false);
         }
+        window.matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', darkModeListener);
     }, []);
 
     return (<>
