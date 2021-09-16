@@ -2,9 +2,29 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faChevronDown, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/dist/client/router'
 import { useTranslations } from 'next-intl'
+import { useEffect } from 'react/cjs/react.development'
+
+const ThemeSwitcher = () => {
+    const [isLight, setIsLight] = useState(true);
+    useEffect(() => {
+        document.getElementById("docHtml").setAttribute("data-theme", isLight ? 'light' : 'dark');
+    }, [isLight]);
+
+    useEffect(() => {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches){
+            setIsLight(false);
+        }
+    }, []);
+
+    return (<>
+        <FontAwesomeIcon className="w-3 h-4 ml-1 mt-1 mr-2" icon={faMoon} />
+        <input type="checkbox" checked={isLight} class="toggle" onChange={()=>{setIsLight((v) => !v)}}></input>
+        <FontAwesomeIcon className="w-4 h-4 ml-1 mt-1 ml-2" icon={faSun} />
+    </>)
+}
 
 const NavBar = () => {
     const t = useTranslations('navigation');
@@ -39,7 +59,7 @@ const Header = () => {
     }
 
     return (<>
-        <header className="bg-primary sticky top-0 z-50">
+        <header className="bg-base-100 sticky top-0 z-50">
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
@@ -79,11 +99,14 @@ const Header = () => {
                 </div>
                 <div className="flex-grow-0 flex flex-wrap content-center">
                     <a className="mx-1 block lg:hidden" href="#" onClick={(ev)=> {ev.preventDefault();setMenu(!menuEnabled)}}>
-                        <FontAwesomeIcon className="w-5 h-5 text-gray-900" icon={faBars} />
+                        <FontAwesomeIcon className="w-5 h-5" icon={faBars} />
                     </a>
                 </div>
+                <div className="flex-grow-0 flex flex-wrap content-center mr-2 hidden">
+                    <ThemeSwitcher/>
+                </div>
             </div>
-            <nav className={`bg-primary px-5 lg:h-0 lg:invisible ${menuEnabled ? '': 'h-0 invisible'}`}>
+            <nav className={`bg-base-100 px-5 lg:h-0 lg:invisible ${menuEnabled ? '': 'h-0 invisible'}`}>
                 <NavBar/>
             </nav>
         </header>

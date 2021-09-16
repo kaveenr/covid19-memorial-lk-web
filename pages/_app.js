@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
 
   const queryClient = new QueryClient()
   return (
-    <div className="bg-primary min-h-screen">
+    <div className="bg-base-100 min-h-screen">
       <NextIntlProvider
         formats={{
           dateTime: {

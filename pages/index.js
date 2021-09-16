@@ -51,7 +51,7 @@ export default function Home(props) {
 
       <Header />
       <main className={"md:container mx-auto px-4 py-1"}>
-        <div className="bg-white rounded-xl my-1 lg:my-4">
+        <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title">{t('title', {total: intl.formatNumber(props.cumDeaths)})}</h2> 
