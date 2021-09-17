@@ -14,11 +14,16 @@
     "methodology": "முறை"
   },
   "footer": {
-    "copyright": "பதிப்புரிமை"
+    "copyright": "பதிப்புரிமை",
+    "title": "கோவிட் -19 நினைவுச்சின்னம்",
+    "shareLinks": "இந்த நினைவிடத்தைப் பகிரவும்"
   },
   "entry": {
     "Male": "ஆண்",
     "Female": "பெண்",
-    "place": "{place} இலிருந்து"
+    "place": "{place} இலிருந்து",
+    "province": "மாகாணம்",
+    "district": "மாவட்டம்",
+    "city": "நகரம்"
   }
 }

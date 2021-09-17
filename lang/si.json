@@ -14,11 +14,16 @@
     "methodology": "ක්රමවේදය"
   },
   "footer": {
-    "copyright": "කතුහිමිකම"
+    "copyright": "කතුහිමිකම",
+    "title": "COVID-19 අනුස්මරණය",
+    "shareLinks": "මෙම අනුස්මරණය බෙදා ගන්න"
   },
   "entry": {
     "Male": "පිරිමි",
     "Female": "ගැහැණු",
-    "place": "{place} සිට"
+    "place": "{place} සිට",
+    "province": "පළාත",
+    "district": "දිසා",
+    "city": "නගරය"
   }
 }

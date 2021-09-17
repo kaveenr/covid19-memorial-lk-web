@@ -21,6 +21,9 @@
     "entry": {
         "Male": "Male",
         "Female": "Female",
-        "place": "From {place}"
+        "place": "From {place}",
+        "province": "Province",
+        "district": "District",
+        "city": "City"
     }
 }

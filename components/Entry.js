@@ -44,11 +44,11 @@ const Entry = ({ data }) => {
                 </a>
             </Link>
             <div className={`card bg-base-200 shadow-xl invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 rounded-xl w-60"} absolute top-1/3 ${tooltipDir ? 'left-1/3' : 'right-1/3'} transition-opacity duration-150 ease-in-out`}>
-                <p><b>Province:</b> {data.attributes.province[`name_${locale}`]}</p>
-                <p><b>District:</b> {data.attributes.district[`name_${locale}`]}</p>
-                {data.attributes.city ? (<p><b>City:</b> {getCity(data.attributes)}</p>) : []}
-                <hr className="my-4"/>
-                <p><b>Source:</b> {data.attributes.sourceType}</p>
+                <p><b>{t('province')}:</b> {data.attributes.province[`name_${locale}`]}</p>
+                <p><b>{t('district')}:</b> {data.attributes.district[`name_${locale}`]}</p>
+                {data.attributes.city ? (<p><b>{t('city')}:</b> {getCity(data.attributes)}</p>) : []}
+                {/* <hr className="my-4"/>
+                <p><b>Source:</b> {data.attributes.sourceType}</p> */}
             </div>
         </div>
   );
