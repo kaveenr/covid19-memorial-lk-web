@@ -41,7 +41,7 @@ export default function Home(props) {
   // When user is near intersecting end.
   intersectHook(()=> {
     setOffset((offset) => (offset + 1));
-  }, "40%", loader);
+  }, "50%", loader);
 
   return (
     <>

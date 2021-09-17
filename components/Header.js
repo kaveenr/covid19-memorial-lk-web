@@ -26,9 +26,9 @@ const ThemeSwitcher = () => {
     }, []);
 
     return (<>
-        <FontAwesomeIcon className="w-3 h-4 ml-1 mt-1 mr-2" icon={faMoon} />
-        <input type="checkbox" checked={isLight} class="toggle" onChange={()=>{setIsLight((v) => !v)}}></input>
-        <FontAwesomeIcon className="w-4 h-4 ml-1 mt-1 ml-2" icon={faSun} />
+        <FontAwesomeIcon className="w-5 h-5 ml-1 mr-1" icon={faMoon} />
+        <input type="checkbox" checked={isLight} className="toggle toggle-sm" onChange={()=>{setIsLight((v) => !v)}}></input>
+        <FontAwesomeIcon className="w-5 h-5 ml-1 ml-1" icon={faSun} />
     </>)
 }
 
@@ -108,7 +108,7 @@ const Header = () => {
                         <FontAwesomeIcon className="w-5 h-5" icon={faBars} />
                     </a>
                 </div>
-                <div className="flex-grow-0 flex flex-wrap content-center mr-2 hidden">
+                <div className="flex-grow-0 flex-wrap content-center mr-2 hidden lg:flex">
                     <ThemeSwitcher/>
                 </div>
             </div>

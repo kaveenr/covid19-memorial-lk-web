@@ -28,8 +28,8 @@ const Entry = ({ data }) => {
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                     <img src="/img/icon.png" className="flex-grow w-full"/>
                     <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
-                    <p className="text-sm font-semibold">{t('place', {place: data.attributes.district})}</p>
-                    <p className="text-sm">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
+                    <p className="text-xs font-semibold">{t('place', {place: data.attributes.district})}</p>
+                    <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
                 </a>
             </Link>
             <div className={`bg-base-200 invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 rounded-xl w-60"} absolute top-1/3 ${tooltipDir ? 'left-1/3' : 'right-1/3'} transition-opacity duration-150 ease-in-out`}>
