@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faChevronDown, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/dist/client/router'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react/cjs/react.development'
 
 const ThemeSwitcher = () => {
     
