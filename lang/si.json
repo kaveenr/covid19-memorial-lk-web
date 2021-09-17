@@ -18,6 +18,7 @@
   },
   "entry": {
     "Male": "පිරිමි",
-    "Female": "ගැහැණු"
+    "Female": "ගැහැණු",
+    "place": "{place} සිට"
   }
 }

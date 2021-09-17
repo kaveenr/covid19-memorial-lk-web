@@ -18,6 +18,7 @@
   },
   "entry": {
     "Male": "ஆண்",
-    "Female": "பெண்"
+    "Female": "பெண்",
+    "place": "{place} இலிருந்து"
   }
 }

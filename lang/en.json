@@ -18,6 +18,7 @@
     },
     "entry": {
         "Male": "Male",
-        "Female": "Female"
+        "Female": "Female",
+        "place": "From {place}"
     }
 }

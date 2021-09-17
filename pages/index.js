@@ -62,7 +62,7 @@ export default function Home(props) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 xl:grid-cols-10 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-4">
           {items.map((i) => (<Entry key={i.id} data={i}/>))}
         </div>
       </main>
