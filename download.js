@@ -21,6 +21,17 @@ async function fetchData(){
     throw Error("Unable to fetch vax centers");
   }).then((response) => (JSON.parse(response.body)));
 
+  const getCity = (key) => {
+      if (!key) return null;
+      const dbMatch = rawGeoData.cities.find((d) => (d.name_en === key));
+      if (dbMatch) {
+        return dbMatch;
+      } else {
+        console.warn(`City ${key} not in geo-dataset.`);
+        return {name_en: key, name_si: key, name_ta: key};
+      }
+  }
+
   const data = rawData.map((i) => ({
     type: "entry",
     id: i.indexKey,
@@ -28,7 +39,7 @@ async function fetchData(){
       ...i,
       province: rawGeoData.provinces.find((d) => (d.name_en === i.province)),
       district: rawGeoData.districts.find((d) => (d.name_en === i.district)),
-      city: rawGeoData.cities.find((d) => (d.name_en === i.city)) || { name_en: i.city, name_si: i.city, name_ta: i.city }
+      city: getCity(i.city)
     }
   }));
 
