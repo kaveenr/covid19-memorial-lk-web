@@ -62,13 +62,13 @@ export default function Home(props) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
           {items.map((i) => (<Entry key={i.id} data={i}/>))}
         </div>
       </main>
       <div key="loader" ref={loader}>
           {isFetching? (<div className="text-center text-lg font-semibold px-4">
-            <FontAwesomeIcon className="animate-spin w-5 h-5 text-gray-900" icon={faSpinner} />
+            <FontAwesomeIcon className="animate-spin w-5 h-5" icon={faSpinner} />
             <p>{t('loading')}</p>
           </div>) : []}
       </div>

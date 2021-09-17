@@ -5,7 +5,7 @@ const MyDocument = () => {
 
     const GA_TRACKING_ID = "";
     return (
-        <Html id="docHtml">
+        <Html id="docHtml" className="min-h-screen">
             <Head>
                 {/* Global Site Tag (gtag.js) - Google Analytics */}
                 <script
@@ -26,7 +26,7 @@ const MyDocument = () => {
                 />
             </Head>
 
-            <body>
+            <body className="bg-base-100 min-h-screen">
                 <Main />
                 <NextScript />
             </body>

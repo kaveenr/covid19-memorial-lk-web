@@ -1,3 +1,4 @@
+import { truncate } from "lodash";
 import Link from "next/link"
 import { useState } from "react";
 import { useIntl, useTranslations } from "use-intl";
@@ -28,7 +29,7 @@ const Entry = ({ data }) => {
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                     <img src="/img/icon.png" className="flex-grow w-full"/>
                     <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
-                    <p className="text-xs font-semibold">{t('place', {place: data.attributes.district})}</p>
+                    <p className="text-xs font-semibold">{t('place', {place: truncate(data.attributes.city, {length:15})})}</p>
                     <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
                 </a>
             </Link>

@@ -4,8 +4,8 @@
         "subtitle": "COVID-19 Memorial"
     },
     "home": {
-        "title": "{total} people lost their lives to the pandemic.",
-        "subtitle": "This memorial has processed {count} individuals.",
+        "title": "{total} people have died due to the pandemic in Sri Lanka",
+        "subtitle": "This memorial has so far documented the details of {count} of them.",
         "loading": "Loading"
     },
     "navigation": {
@@ -14,7 +14,9 @@
         "methodology": "Methodology"
     },
     "footer": {
-        "copyright": "Copyright"
+        "copyright": "Copyright",
+        "title": "COVID-19 Memorial",
+        "shareLinks": "Share this memorial"
     },
     "entry": {
         "Male": "Male",

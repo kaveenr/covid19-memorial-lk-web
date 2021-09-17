@@ -17,13 +17,13 @@ const ThemeSwitcher = () => {
         setIsLight(!event.matches);
     }
 
-    useEffect(() => {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches){
-            setIsLight(false);
-        }
-        window.matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', darkModeListener);
-    }, []);
+    // useEffect(() => {
+    //     if (window.matchMedia('(prefers-color-scheme: dark)').matches){
+    //         setIsLight(false);
+    //     }
+    //     window.matchMedia('(prefers-color-scheme: dark)')
+    //         .addEventListener('change', darkModeListener);
+    // }, []);
 
     return (<>
         <FontAwesomeIcon className="w-5 h-5 ml-1 mr-1" icon={faMoon} />
