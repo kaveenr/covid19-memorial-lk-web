@@ -1,8 +1,11 @@
 import { truncate } from "lodash";
 import { useRouter } from 'next/dist/client/router'
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react";
 import { useIntl, useTranslations } from "use-intl";
+import FlowerImg from '../public/img/icon.png'
+
 
 const Entry = ({ data }) => {
 
@@ -26,6 +29,7 @@ const Entry = ({ data }) => {
 
     const getCity = (i) => {
         if (!i.city) {
+            if (!i.district) return "Unknown";
             return i.district[`name_${locale}`];
         }
         const inLang = i.city[`name_${locale}`];
@@ -37,7 +41,7 @@ const Entry = ({ data }) => {
             <Link href={`/entry/${data.id}`}>
                 <a 
                     className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
-                    <img src="/img/icon.png" className="flex-grow w-full"/>
+                    <Image src={FlowerImg} width="300" height="300" loading="lazy" placeholder="blur" className="flex-grow w-full"/>
                     <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
                     <p className="text-xs font-semibold">{t('place', {place: truncate(getCity(data.attributes), {length:12})})}</p>
                     <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>

@@ -10,5 +10,17 @@
     {
         "slug": "about",
         "locale": "ta"
+    },
+    {
+        "slug": "methodology",
+        "locale": "en"
+    },
+    {
+        "slug": "methodology",
+        "locale": "si"
+    },
+    {
+        "slug": "methodology",
+        "locale": "ta"
     }
 ]

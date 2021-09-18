@@ -50,12 +50,13 @@ export default function Home(props) {
       </Head>
 
       <Header />
-      <main className={"md:container mx-auto px-4 py-1"}>
+      <main className={"md:container mx-auto px-4 py-1 mb-4"}>
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title">{t('title', {total: intl.formatNumber(props.cumDeaths)})}</h2> 
               <p>{t('subtitle', {count: intl.formatNumber(props.count)})}</p> 
+              {/* <p>{t('subtitle_1')}</p>  */}
               {/* <div className="card-actions">
                 <button className="btn btn-primary">More info</button>
               </div> */}

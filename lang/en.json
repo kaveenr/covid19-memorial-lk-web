@@ -5,7 +5,7 @@
     },
     "home": {
         "title": "{total} people have died due to the pandemic in Sri Lanka",
-        "subtitle": "This memorial has so far documented the details of {count} of them.",
+        "subtitle": "This memorial has so far documented the details of {count} of them. Each flower represents one person and shares their age, sex and where they are from, as recorded by the government.",
         "loading": "Loading"
     },
     "navigation": {
@@ -16,6 +16,7 @@
     "footer": {
         "copyright": "Copyright",
         "title": "COVID-19 Memorial",
+        "subtitle": "In memory of those we lost to COVID-19 in Sri Lanka.",
         "shareLinks": "Share this memorial"
     },
     "entry": {

@@ -37,10 +37,10 @@ const NavBar = () => {
     return (
         <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
             <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">{t('methodology')}</a></Link>
+                <Link href="/[slug]" as="/methodology"><a className="hover:underline">{t('methodology')}</a></Link>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/category/[slug]" as="/category/life"><a className="hover:underline">{t('submit')}</a></Link>
+                <Link href="/[slug]" as="/submit"><a className="hover:underline">{t('submit')}</a></Link>
             </li>
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
@@ -108,9 +108,9 @@ const Header = () => {
                         <FontAwesomeIcon className="w-5 h-5" icon={faBars} />
                     </a>
                 </div>
-                <div className="flex-grow-0 flex-wrap content-center mr-2 hidden lg:flex">
+                {/* <div className="flex-grow-0 flex-wrap content-center mr-2 hidden lg:flex">
                     <ThemeSwitcher/>
-                </div>
+                </div> */}
             </div>
             <nav className={`bg-base-100 px-5 lg:h-0 lg:invisible ${menuEnabled ? '': 'h-0 invisible'}`}>
                 <NavBar/>

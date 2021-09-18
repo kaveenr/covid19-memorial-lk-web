@@ -32,13 +32,21 @@ async function fetchData(){
       }
   }
 
+  const getDistrict = (key) => {
+    if (!key) {
+      console.error(`district ${key} not in geo-dataset. Setting Colombo as default`);
+      return "Colombo";
+    };
+    return rawGeoData.districts.find((d) => (d.name_en === key))
+  }
+
   const data = rawData.map((i) => ({
     type: "entry",
     id: i.indexKey,
     attributes: {
       ...i,
       province: rawGeoData.provinces.find((d) => (d.name_en === i.province)),
-      district: rawGeoData.districts.find((d) => (d.name_en === i.district)),
+      district: getDistrict(i.district),
       city: getCity(i.city)
     }
   }));
