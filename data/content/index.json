@@ -22,5 +22,17 @@
     {
         "slug": "methodology",
         "locale": "ta"
+    },
+    {
+        "slug": "contact",
+        "locale": "en"
+    },
+    {
+        "slug": "contact",
+        "locale": "si"
+    },
+    {
+        "slug": "contact",
+        "locale": "ta"
     }
 ]

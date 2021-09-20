@@ -46,6 +46,9 @@ const NavBar = () => {
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
             </li>
+            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/[slug]" as="/contact"><a className="hover:underline">{t('contact')}</a></Link>
+            </li>
         </ul>
     );
 }
