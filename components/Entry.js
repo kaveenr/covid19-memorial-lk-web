@@ -38,15 +38,13 @@ const Entry = ({ data }) => {
 
     return (
         <div className="relative" onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
-            <Link href={`/entry/${data.id}`}>
-                <a 
-                    className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
-                    <Image src={FlowerImg} width="300" height="300" loading="lazy" placeholder="blur" className="flex-grow w-full"/>
-                    <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
-                    <p className="text-xs font-semibold">{t('place', {place: truncate(getCity(data.attributes), {length:12})})}</p>
-                    <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
-                </a>
-            </Link>
+            <a 
+                className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
+                <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
+                <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
+                <p className="text-xs font-semibold">{t('place', {place: truncate(getCity(data.attributes), {length:12})})}</p>
+                <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
+            </a>
             <div className={`card bg-base-200 shadow-xl invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 rounded-xl w-60"} absolute top-1/3 ${tooltipDir ? 'left-1/3' : 'right-1/3'} transition-opacity duration-150 ease-in-out`}>
                 <p><b>{t('province')}:</b> {data.attributes.province[`name_${locale}`]}</p>
                 <p><b>{t('district')}:</b> {data.attributes.district[`name_${locale}`]}</p>

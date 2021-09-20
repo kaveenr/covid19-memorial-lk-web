@@ -50,7 +50,7 @@ export default function Home(props) {
       </Head>
 
       <Header />
-      <main className={"md:container mx-auto px-4 py-1 mb-4"}>
+      <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4"}>
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">

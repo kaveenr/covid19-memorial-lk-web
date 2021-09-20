@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faChevronDown, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/dist/client/router'
 import { useTranslations } from 'next-intl'
+import Head from 'next/head'
 
 const ThemeSwitcher = () => {
     
@@ -49,7 +50,7 @@ const NavBar = () => {
     );
 }
 
-const Header = () => {
+const Header = ({ sub }) => {
 
     const [menuEnabled, setMenu] = useState(false);
     const { locale, asPath } = useRouter();
@@ -64,8 +65,31 @@ const Header = () => {
           }).catch(console.error);
     }
 
+    const nt = useTranslations('navigation');
+    const getTitle = () => {
+
+        return sub ? nt(sub): t("seoTitle")
+    }
+
     return (<>
         <header className="bg-base-100 sticky top-0 z-50">
+            <Head>
+                <title>{getTitle()}</title>
+                <meta name="title" content={getTitle()} />
+                <meta name="description" content={t("seoDisc")}/>
+
+                <meta property="og:type" content="website"/>
+                <meta property="og:url" content="http://srilankac19memorial.org/"/>
+                <meta property="og:title" content={getTitle()}/>
+                <meta property="og:description" content={t("seoDisc")}/>
+                <meta property="og:image" content={`http://srilankac19memorial.org/img/seo_${locale}.png`}/>
+
+                <meta property="twitter:card" content="summary_large_image"/>
+                <meta property="twitter:url" content="http://srilankac19memorial.org/"/>
+                <meta property="twitter:title" content={getTitle()}/>
+                <meta property="twitter:description" content={t("seoDisc")}/>
+                <meta property="twitter:image" content={`http://srilankac19memorial.org/img/seo_${locale}.png`}></meta>
+            </Head>
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
