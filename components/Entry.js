@@ -43,8 +43,8 @@ const Entry = ({ data }) => {
     }
 
     return (
-        <div className="relative" onClick={(e) => (handleHover(e))} onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
-            <a 
+        <div className="relative" onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
+            <a  onClick={(e) => (handleHover(e))}
                 className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
                 <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
