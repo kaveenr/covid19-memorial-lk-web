@@ -75,7 +75,7 @@ const Header = ({ sub }) => {
     }
 
     return (<>
-        <header className="bg-base-100 sticky top-0 z-50">
+        <header className="bg-base-100 sticky top-0 z-30">
             <Head>
                 <title>{getTitle()}</title>
                 <meta name="title" content={getTitle()} />

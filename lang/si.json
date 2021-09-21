@@ -28,6 +28,9 @@
     "place": "{place} සිට",
     "province": "පළාත",
     "district": "දිසා",
-    "city": "නගරය"
+    "city": "නගරය",
+    "source": "මූලාශ්රය",
+    "gotoSource": "මූලාශ්‍රය ලබා ගන්න",
+    "source_DGI_PR_DOCS": "රජයේ ප්‍රවෘත්ති දෙපාර්තමේන්තුව"
   }
 }

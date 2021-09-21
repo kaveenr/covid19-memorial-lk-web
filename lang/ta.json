@@ -28,6 +28,9 @@
     "place": "{place} இலிருந்து",
     "province": "மாகாணம்",
     "district": "மாவட்டம்",
-    "city": "நகரம்"
+    "city": "நகரம்",
+    "source": "ஆதாரம்",
+    "gotoSource": "கோட்டோ சோர்ஸ்",
+    "source_DGI_PR_DOCS": "அரசு தகவல் துறை"
   }
 }

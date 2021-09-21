@@ -28,6 +28,9 @@
         "place": "From {place}",
         "province": "Province",
         "district": "District",
-        "city": "City"
+        "city": "City",
+        "source": "Source",
+        "gotoSource": "Goto Source",
+        "source_DGI_PR_DOCS": "Department of Government Information"
     }
 }

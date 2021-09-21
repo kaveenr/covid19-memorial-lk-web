@@ -5,6 +5,8 @@ import Image from "next/image"
 import { useState } from "react";
 import { useIntl, useTranslations } from "use-intl";
 import FlowerImg from '../public/img/icon.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 const Entry = ({ data }) => {
@@ -36,8 +38,12 @@ const Entry = ({ data }) => {
         return inLang || i.city[`name_en`];
     }
 
+    const getLink = (i) => {
+        return `https://github.com/kaveenr/covid19-memorial-lk-data/blob/data/data/dig_reports/${i.sourceRef}.md`
+    }
+
     return (
-        <div className="relative" onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
+        <div className="relative" onClick={(e) => (handleHover(e))} onMouseOver={(e) => (handleHover(e))} onMouseLeave={(e) => (setDetailVisible(false))}>
             <a 
                 className={`py-4 flex flex-col items-center relative ${!detailVisible ? "hover:": ""}scale-110 transition-transform duration-700 ease-out`}>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
@@ -45,12 +51,18 @@ const Entry = ({ data }) => {
                 <p className="text-xs font-semibold">{t('place', {place: truncate(getCity(data.attributes), {length:12})})}</p>
                 <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
             </a>
-            <div className={`card bg-base-200 shadow-xl invisible md:visible overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 p-4 rounded-xl w-60"} absolute top-1/3 ${tooltipDir ? 'left-1/3' : 'right-1/3'} transition-opacity duration-150 ease-in-out`}>
+            <div className={`fixed top-0 left-0 w-screen h-screen md:w-0 md:h-0 bg-black z-40 opacity-50 ${!detailVisible ? "hidden" : "fixed md:hidden"}`}/>
+            <div className={`card bg-base-200 p-4 shadow-xl overflow-hidden ${!detailVisible ? "w-0 h-0 z-0 opacity-0": "opacity-100 z-50 rounded-xl w-full md:w-80"} fixed bottom-0 md:bottom-auto left-0 md:absolute md:top-1/3 ${tooltipDir ? 'md:left-1/3' : 'md:right-1/3'} transition-opacity duration-150 ease-in-out`}>
+                <button className="p-2 text-right block md:hidden" onClick={()=> {setDetailVisible(false)}}>
+                    <FontAwesomeIcon className="w-5 h-5" icon={faTimes} />
+                </button>
                 <p><b>{t('province')}:</b> {data.attributes.province[`name_${locale}`]}</p>
                 <p><b>{t('district')}:</b> {data.attributes.district[`name_${locale}`]}</p>
                 {data.attributes.city ? (<p><b>{t('city')}:</b> {getCity(data.attributes)}</p>) : []}
-                {/* <hr className="my-4"/>
-                <p><b>Source:</b> {data.attributes.sourceType}</p> */}
+                <p><b>{t('source')}:</b> {t(`source_${data.attributes.sourceType}`)}</p>
+                <div className="mt-4">
+                    <a class="btn btn-sm" href={getLink(data.attributes)} target="_blank">{t('gotoSource')}</a> 
+                </div>
             </div>
         </div>
   );
