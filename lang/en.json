@@ -6,14 +6,12 @@
         "seoDisc": "A online memorial for all those who died during the pandemic in Sri Lanka"
     },
     "home": {
-        "title": "{total} people have died due to the pandemic in Sri Lanka",
-        "subtitle": "This memorial has so far documented the details of {count} of them. Each flower represents one person and shares their age, sex and where they are from, as recorded by the government.",
         "loading": "Loading"
     },
     "navigation": {
         "about": "About",
         "submit": "Submit",
-        "methodology": "Methodology",
+        "approach": "Approach",
         "contact": "Contact Us"
     },
     "footer": {

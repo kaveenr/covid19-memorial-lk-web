@@ -10,6 +10,8 @@ import { fetchEntries } from '../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useIntl, useTranslations } from 'use-intl';
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 
 export default function Home(props) {
 
@@ -54,12 +56,10 @@ export default function Home(props) {
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title">{t('title', {total: intl.formatNumber(props.cumDeaths)})}</h2> 
-              <p>{t('subtitle', {count: intl.formatNumber(props.count)})}</p> 
-              {/* <p>{t('subtitle_1')}</p>  */}
-              {/* <div className="card-actions">
-                <button className="btn btn-primary">More info</button>
-              </div> */}
+              <MDXRemote {...props.indexText} scope={{
+                total: intl.formatNumber(props.cumDeaths),
+                count: intl.formatNumber(props.count)
+              }}/>
             </div>
           </div>
         </div>
@@ -78,9 +78,13 @@ export default function Home(props) {
   )
 }
 
-export function getStaticProps({locale}) {
+export async function getStaticProps({locale}) {
   const rawData = require('../data/latest.json');
   const keyData = require('../data/keys_latest.json');
+  // Load Intro Text
+  const fs = require('fs')
+  const source = fs.readFileSync(`data/content/index_${locale}.mdx`, {encoding:'utf8', flag:'r'});
+  const mdxSource = await serialize(source)
   return {
     props: {
       // Preload initial data 
@@ -92,6 +96,7 @@ export function getStaticProps({locale}) {
       },
       count: rawData.length,
       cumDeaths: last(keyData).cumDeaths,
+      indexText: mdxSource,
       messages: {
         ...require(`../lang/${locale}.json`),
       },

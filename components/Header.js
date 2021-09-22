@@ -38,7 +38,7 @@ const NavBar = () => {
     return (
         <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
             <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/methodology"><a className="hover:underline">{t('methodology')}</a></Link>
+                <Link href="/[slug]" as="/approach"><a className="hover:underline">{t('approach')}</a></Link>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/submit"><a className="hover:underline">{t('submit')}</a></Link>
@@ -85,13 +85,13 @@ const Header = ({ sub }) => {
                 <meta property="og:url" content="http://srilankac19memorial.org/"/>
                 <meta property="og:title" content={getTitle()}/>
                 <meta property="og:description" content={t("seoDisc")}/>
-                <meta property="og:image" content={`http://srilankac19memorial.org/img/seo_${locale}.png`}/>
+                <meta property="og:image" content={`http://srilankac19memorial.org/img/seo.png`}/>
 
                 <meta property="twitter:card" content="summary_large_image"/>
                 <meta property="twitter:url" content="http://srilankac19memorial.org/"/>
                 <meta property="twitter:title" content={getTitle()}/>
                 <meta property="twitter:description" content={t("seoDisc")}/>
-                <meta property="twitter:image" content={`http://srilankac19memorial.org/img/seo_${locale}.png`}></meta>
+                <meta property="twitter:image" content={`http://srilankac19memorial.org/img/seo.png`}></meta>
             </Head>
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
