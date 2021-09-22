@@ -71,7 +71,7 @@ const Header = ({ sub }) => {
     const nt = useTranslations('navigation');
     const getTitle = () => {
 
-        return sub ? nt(sub): t("seoTitle")
+        return sub ? `${t("seoTitle")} - ${nt(sub)}`: t("seoTitle")
     }
 
     return (<>
