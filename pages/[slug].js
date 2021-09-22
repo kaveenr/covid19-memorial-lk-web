@@ -10,7 +10,7 @@ const Page = (props) => {
     return (
         <>
             <Header  sub={props.slug}/>
-            <main className={"container mx-auto px-6 py-1 flex-grow h-full"}>
+            <main className={"container mx-auto px-6 py-1 pb-6 flex-grow h-full"}>
                 <article className="prose lg:prose-xl mt-3">
                     <MDXRemote {...props.content} components={components}/>
                 </article>
