@@ -1,9 +1,9 @@
 import React,{ useState } from 'react';
 import { Html, Head, Main, NextScript } from 'next/document'
+import { GA_TRACKING_ID } from '../utils/constants';
 
 const MyDocument = () => {
 
-    const GA_TRACKING_ID = "";
     return (
         <Html id="docHtml" className="min-h-screen">
             <Head>
