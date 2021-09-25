@@ -85,13 +85,13 @@ const Header = ({ sub }) => {
                 <meta property="og:url" content="http://srilankac19memorial.org/"/>
                 <meta property="og:title" content={getTitle()}/>
                 <meta property="og:description" content={t("seoDisc")}/>
-                <meta property="og:image" content={`http://srilankac19memorial.org/img/seo.png`}/>
+                <meta property="og:image" content={`http://srilankac19memorial.org/img/share_img.png`}/>
 
                 <meta property="twitter:card" content="summary_large_image"/>
                 <meta property="twitter:url" content="http://srilankac19memorial.org/"/>
                 <meta property="twitter:title" content={getTitle()}/>
                 <meta property="twitter:description" content={t("seoDisc")}/>
-                <meta property="twitter:image" content={`http://srilankac19memorial.org/img/seo.png`}></meta>
+                <meta property="twitter:image" content={`http://srilankac19memorial.org/img/share_img.png`}></meta>
             </Head>
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
