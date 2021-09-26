@@ -55,7 +55,7 @@ export default function Home(props) {
       <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4"}>
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
-            <div className="card-body">
+            <div className="card-body text-sm md:text-base">
               <MDXRemote {...props.indexText} scope={{
                 total: intl.formatNumber(props.cumDeaths),
                 count: intl.formatNumber(props.count)
