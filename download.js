@@ -7,7 +7,7 @@ async function fetchData(){
 
   const rawGeoData = await request({
     'method': 'GET',
-    'url': 'https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/main/data/geo/geo.json',
+    'url': 'https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/data/data/geo_processed_latest.json',
   }).catch((e)=> {
     throw Error("Unable to fetch geo data");
   }).then((response) => (JSON.parse(response.body)));
