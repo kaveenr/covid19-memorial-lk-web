@@ -23,12 +23,12 @@
     "entry": {
         "Male": "Male",
         "Female": "Female",
-        "place": "From {place}",
+        "place": "{place}",
         "province": "Province",
         "district": "District",
         "city": "City",
         "source": "Source",
-        "gotoSource": "Goto Source",
+        "gotoSource": "Go to Source",
         "source_DGI_PR_DOCS": "Department of Government Information"
     }
 }
