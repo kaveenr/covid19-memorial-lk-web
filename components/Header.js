@@ -37,14 +37,14 @@ const NavBar = () => {
     const t = useTranslations('navigation');
     return (
         <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
+            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
+            </li>
             <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/approach"><a className="hover:underline">{t('approach')}</a></Link>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/submit"><a className="hover:underline">{t('submit')}</a></Link>
-            </li>
-            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
             </li>
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/contact"><a className="hover:underline">{t('contact')}</a></Link>
@@ -97,8 +97,8 @@ const Header = ({ sub }) => {
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
                         <a>
-                            <p>{t('title')}</p>
-                            <p><b>{t('subtitle')}</b></p>
+                            <p className={"text-base"}>{t('title')}</p>
+                            <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
                         </a>
                     </Link>
                 </div>

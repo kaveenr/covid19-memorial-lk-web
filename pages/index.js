@@ -56,10 +56,12 @@ export default function Home(props) {
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body text-sm md:text-base">
-              <MDXRemote {...props.indexText} scope={{
-                total: intl.formatNumber(props.cumDeaths),
-                count: intl.formatNumber(props.count)
-              }}/>
+              <div className={"prose prose-sm max-w-none"}>
+                <MDXRemote {...props.indexText} scope={{
+                  total: intl.formatNumber(props.cumDeaths),
+                  count: intl.formatNumber(props.count)
+                }}/>
+              </div>
             </div>
           </div>
         </div>
