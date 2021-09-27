@@ -26,16 +26,6 @@ const MyDocument = () => {
                 />
             </Head>
 
-            {/* Quick Hack For Forum */}
-            <div className={"hidden"}>
-                <form name="contact" className="card" method="POST" data-netlify="true">
-                    <input type="text" name="name" placeholder="John Doe" className="input"/>
-                    <input type="email" name="email" placeholder="john.d@email.com" className="input"/>
-                    <textarea className="textarea h-24 textarea-bordered"name="message" placeholder="Written Message"></textarea>
-                    <button type="submit" className="btn btn-primary">Submit</button> 
-                </form>
-            </div>
-
             <body className="bg-base-100 min-h-screen">
                 <Main />
                 <NextScript />
