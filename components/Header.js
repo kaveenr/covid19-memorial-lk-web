@@ -37,14 +37,14 @@ const NavBar = () => {
     const t = useTranslations('navigation');
     return (
         <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
+            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
+            </li>
             <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/approach"><a className="hover:underline">{t('approach')}</a></Link>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/submit"><a className="hover:underline">{t('submit')}</a></Link>
-            </li>
-            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
             </li>
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <Link href="/[slug]" as="/contact"><a className="hover:underline">{t('contact')}</a></Link>
