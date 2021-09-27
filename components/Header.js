@@ -97,8 +97,8 @@ const Header = ({ sub }) => {
                 <div className="flex-grow flex flex-wrap mx-1">
                     <Link href="/">
                         <a>
-                            <p>{t('title')}</p>
-                            <p><b>{t('subtitle')}</b></p>
+                            <p className={"text-base"}>{t('title')}</p>
+                            <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
                         </a>
                     </Link>
                 </div>
