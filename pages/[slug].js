@@ -3,9 +3,11 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import { useTranslations } from 'use-intl';
 
 const ContactForm = () => {
 
+    const t = useTranslations('contactForm');
     return (
         <div>
             <div class="card shadow-lg w-auto">
@@ -14,24 +16,24 @@ const ContactForm = () => {
                         <input type="hidden" name="form-name" value="contact" />
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text">{t('name')}</span>
                             </label> 
-                            <input type="text" name="name" placeholder="John Doe" className="input"/>
+                            <input type="text" name="name" placeholder={t('name_placeholder')} className="input"/>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">{t('email')}</span>
                             </label> 
-                            <input type="email" name="email" placeholder="john.d@email.com" className="input"/>
+                            <input type="email" name="email" placeholder={t('email_placeholder')} className="input"/>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Message</span>
+                                <span className="label-text">{t('message')}</span>
                             </label> 
-                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder="Written Message"></textarea>
+                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')}></textarea>
                         </div>
                         <div className="form-control pt-8">
-                            <button type="submit" className="btn btn-primary">Submit</button> 
+                            <button type="submit" className="btn btn-primary">{t('submit')}</button> 
                         </div>
                     </form>
                 </div>

@@ -30,5 +30,14 @@
     "source": "මූලාශ්‍රය",
     "gotoSource": "මූලාශ්‍රය වෙත යන්න",
     "source_DGI_PR_DOCS": "රජයේ ප්‍රවෘත්ති දෙපාර්තමේන්තුව"
+  },
+  "contactForm": {
+    "name": "නම",
+    "email": "විද්යුත් තැපෑල",
+    "message": "පණිවුඩය",
+    "name_placeholder": "ජෝන් ඩෝ",
+    "email_placeholder": "john@mail.net",
+    "message_placeholder": "ලිඛිත පණිවිඩය",
+    "submit": "ඉදිරිපත් කරන්න"
   }
 }
