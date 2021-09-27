@@ -23,7 +23,8 @@ const ContactForm = () => {
         <div>
             <div class="card shadow-lg w-auto">
                 <div className="card-body bg-gray-50">
-                    <form name="contact" action={`${asPath}?success=submitted`} method="POST" data-netlify="true">
+                    <form name="contact" action={`${asPath}?success=submitted`} method="POST">
+                        <input type="hidden" name="form-name" value="contact" />
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -40,10 +41,7 @@ const ContactForm = () => {
                             <label className="label">
                                 <span className="label-text">Message</span>
                             </label> 
-                            <textarea className="textarea h-24 textarea-bordered"name="message" placeholder="Written Message"></textarea>
-                        </div>
-                        <div className="form-control">
-                            <div data-netlify-recaptcha="true"></div>
+                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder="Written Message"></textarea>
                         </div>
                         <div className="form-control pt-8">
                             <button type="submit" className="btn btn-primary">Submit</button> 

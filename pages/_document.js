@@ -27,6 +27,12 @@ const MyDocument = () => {
             </Head>
 
             <body className="bg-base-100 min-h-screen">
+                {/* Help Netlify Find Forms */}
+                <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+                    <input type="text" name="name" />
+                    <input type="email" name="email" />
+                    <textarea name="message"></textarea>
+                </form>
                 <Main />
                 <NextScript />
             </body>
