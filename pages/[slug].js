@@ -3,27 +3,14 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
-import { useRouter } from 'next/dist/client/router';
-
 
 const ContactForm = () => {
 
-    const { asPath, query } = useRouter();
-
-    if (query.success) {
-        return (
-            <div className="card compact bg-secondary">
-                <div className="card-body">
-                    <p className="font-semibold text-md">Successfully submitted the form!</p>
-                </div>
-            </div>
-        )
-    }
     return (
         <div>
             <div class="card shadow-lg w-auto">
                 <div className="card-body bg-gray-50">
-                    <form name="contact" action={`${asPath}?success=submitted`} method="POST">
+                    <form name="contact" method="POST">
                         <input type="hidden" name="form-name" value="contact" />
                         <div className="form-control">
                             <label className="label">
