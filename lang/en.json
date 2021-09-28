@@ -30,5 +30,14 @@
         "source": "Source",
         "gotoSource": "Go to Source",
         "source_DGI_PR_DOCS": "Department of Government Information"
+    },
+    "contactForm": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "name_placeholder": "John Doe",
+        "email_placeholder": "john@mail.net",
+        "message_placeholder": "written message",
+        "submit": "submit"
     }
 }
