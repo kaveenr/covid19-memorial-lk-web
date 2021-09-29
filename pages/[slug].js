@@ -10,7 +10,7 @@ const ContactForm = () => {
     const t = useTranslations('contactForm');
     return (
         <div>
-            <div class="card shadow-lg w-auto">
+            <div className="card shadow-lg w-auto">
                 <div className="card-body bg-gray-50">
                     <form name="contact" method="POST">
                         <input type="hidden" name="form-name" value="contact" />

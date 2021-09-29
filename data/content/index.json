@@ -34,5 +34,17 @@
     {
         "slug": "contact",
         "locale": "ta"
+    },
+    {
+        "slug": "submit",
+        "locale": "en"
+    },
+    {
+        "slug": "submit",
+        "locale": "si"
+    },
+    {
+        "slug": "submit",
+        "locale": "ta"
     }
 ]
