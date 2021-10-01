@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { useIntl, useTranslations } from 'use-intl';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
@@ -63,7 +63,10 @@ export default function Home(props) {
       </Head>
 
       <Header />
-      <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4"}>
+      <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4 relative"}>
+        <button onClick={()=>{window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}} className={`btn fixed bottom-0 right-0 mb-8 mr-8 ${offset > 1 ? "block" : "hidden"}`}>
+          <FontAwesomeIcon icon={faChevronUp} size="2x"/>
+        </button>
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body text-sm md:text-base">
