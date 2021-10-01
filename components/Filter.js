@@ -9,7 +9,8 @@ const initialState = {
     init: true,
     geoType: undefined,
     geoId: undefined,
-    ageRange: undefined
+    ageRange: undefined,
+    gender: undefined,
 };
 
 const reducer = (pureState, action) => {
@@ -34,6 +35,11 @@ const reducer = (pureState, action) => {
             return {
                 ...state,
                 ageRange: action.value
+            }
+        case "GENDER":
+            return {
+                ...state,
+                gender: action.value
             }
     }
 }
@@ -63,12 +69,15 @@ const Filter = ({ setFilter }) => {
                             dispatch({ type: "GEO", value: event.target.value })
                         }}>
                         <option disabled="disabled" selected="selected" value={"default"}>Location</option>
+                        <option disabled="disabled">{' '}</option>
                         <option disabled="disabled">Provinces</option>
                         {geo.provinces.map((d) => (<option value={`province|${d.id}`}>{d[`name_${locale}`]}</option>))}
+                        <option disabled="disabled">{' '}</option>
                         <option disabled="disabled">Districts</option>
                         {geo.districts.map((d) => (<option value={`district|${d.id}`}>{d[`name_${locale}`]}</option>))}
+                        <option disabled="disabled">{' '}</option>
                         <option disabled="disabled">Cities</option>
-                        {geo.cities.map((d) => (<option value={`city|${d.id}`}>{d[`name_${locale}`]}</option>))}
+                        {geo.cities.filter((d) => (d[`name_${locale}`])).map((d) => (<option value={`city|${d.id}`}>{d[`name_${locale}`]}</option>))}
                     </select>
                     <select className="select select-bordered m-1"
                         value={filter.ageRange ? filter.ageRange  : "default"}
@@ -79,6 +88,15 @@ const Filter = ({ setFilter }) => {
                         <option value="0-30">Below 30</option>
                         <option value="30-59">Between 30 and 59</option>
                         <option value="60-120">60 years and above</option>
+                    </select>
+                    <select className="select select-bordered m-1"
+                        value={filter.gender ? filter.gender  : "default"}
+                        onChange={event => {
+                            dispatch({ type: "GENDER", value: event.target.value })
+                        }}>
+                        <option disabled="disabled" selected="selected" value={"default"}>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                     <button class="btn m-1" onClick={() => dispatch({ type: "RESET"})}>
                         <FontAwesomeIcon icon={faTimes} size="1x" className="mr-2" />

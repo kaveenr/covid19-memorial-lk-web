@@ -26,6 +26,13 @@ export default function dataAPI(req, res) {
     })
   }
 
+  // Filter On Gender
+  if (req.query.gender) {
+    slicedData = slicedData.filter((item) => {
+      return item.attributes.gender == req.query.gender;
+    })
+  }
+
   // Finally Paginate
   slicedData = slice(slicedData, arrayOffset, arrayOffset + limit)
 
