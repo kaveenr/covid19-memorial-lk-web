@@ -12,6 +12,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useIntl, useTranslations } from 'use-intl';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import Filter from '../components/Filter';
 
 export default function Home(props) {
 
@@ -19,12 +20,14 @@ export default function Home(props) {
   const loader = useRef(null);
   const [items, setItems] = useState([]);
   const [offset, setOffset] = useState(0);
+  const [filter, setFilter] = useState(null);
+
   const t = useTranslations('home');
   const intl = useIntl();
 
   // Fetch Entries, on initial offset use rendered dataset.
-  const { status, data, error, isFetching } = useQuery(['entries', offset],
-    () => (offset == 0 ? props.data: fetchEntries(offset)),
+  const { status, data, error, isFetching } = useQuery(['entries', offset, filter],
+    () => (fetchEntries(offset, filter)),
     { keepPreviousData: true, staleTime: 5000 }
   )
 
@@ -32,13 +35,21 @@ export default function Home(props) {
   useEffect(() => {
     if (status == "success") {
       // Append Items On Successful Fetch
-      setItems((items) => [...items, ...data.data]);
+      // If Offset is zero then don't append!
+      setItems((items) => (offset == 0 ? [...data.data] : [...items, ...data.data]));
       // If Next Link Available, then pre-fetch.
       if (data.links.next){
-        queryClient.prefetchQuery(['entries', offset + 1], () => fetchEntries(offset + 1));
+        queryClient.prefetchQuery(['entries', offset + 1, filter], () => fetchEntries(offset + 1, filter));
       }
     }
   }, [status, data]);
+
+  // On Filter Change Empty Items
+  useEffect(() => {
+    if (filter) {
+      setOffset(0);
+    }
+  }, [filter])
 
   // When user is near intersecting end.
   intersectHook(()=> {
@@ -65,9 +76,16 @@ export default function Home(props) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
-          {items.map((i) => (<Entry key={i.id} data={i}/>))}
+        <div className="pt-1">
+          <Filter setFilter={(f) => {setFilter(f)}}/>
         </div>
+        {items.length == 0 && !isFetching ? (<div className="p-8 text-center text-lg font-semibold">
+          <p>No Results</p>
+        </div>): (
+          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
+            {items.map((i) => (<Entry key={i.id} data={i}/>))}
+          </div>
+        )}
       </main>
       <div key="loader" ref={loader}>
           {isFetching? (<div className="text-center text-lg font-semibold px-4">
@@ -89,13 +107,6 @@ export async function getStaticProps({locale}) {
   const mdxSource = await serialize(source)
   return {
     props: {
-      // Preload initial data 
-      data: {
-        data: slice(rawData,0,50),
-        links: {
-          next: '/api/entries?offset=1'
-        }
-      },
       count: rawData.length,
       cumDeaths: last(keyData).cumDeaths,
       indexText: mdxSource,

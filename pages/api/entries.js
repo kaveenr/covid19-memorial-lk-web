@@ -7,7 +7,27 @@ export default function dataAPI(req, res) {
   const limit = parseInt(req.query.limit) || 50;
   const arrayOffset = offset * limit;
 
-  const slicedData = slice(data, arrayOffset, arrayOffset + limit)
+  // Set initial data.
+  let slicedData = data;
+  
+  // Filter Age Range
+  if (req.query.ageRange) {
+    const ages = req.query.ageRange.split("-").map((age) => (parseInt(age)));
+    slicedData = slicedData.filter((item) => {
+      const itemAge = parseInt(item.attributes.ageValue);
+      return itemAge >= ages[0] && itemAge <= ages[1];
+    })
+  }
+
+  // Filter On Geo
+  if (req.query.geoType) {
+    slicedData = slicedData.filter((item) => {
+      return item.attributes[req.query.geoType] && item.attributes[req.query.geoType].id == req.query.geoId;
+    })
+  }
+
+  // Finally Paginate
+  slicedData = slice(slicedData, arrayOffset, arrayOffset + limit)
 
   let links = {
     self: req.url
