@@ -33,7 +33,7 @@ const ContactForm = () => {
                             <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')}></textarea>
                         </div>
                         <div className="form-control pt-8">
-                            <button type="submit" className="btn btn-primary">{t('submit')}</button> 
+                            <button type="submit" className="btn">{t('submit')}</button> 
                         </div>
                     </form>
                 </div>
