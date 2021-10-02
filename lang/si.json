@@ -36,23 +36,23 @@
     "name": "නම",
     "email": "විද්යුත් තැපෑල",
     "message": "පණිවුඩය",
-    "name_placeholder": "ජෝන් ඩෝ",
-    "email_placeholder": "john@mail.net",
-    "message_placeholder": "ලිඛිත පණිවිඩය",
-    "submit": "ඉදිරිපත් කරන්න"
+    "name_placeholder": "ඔබේ නම",
+    "email_placeholder": "jane@mail.net",
+    "message_placeholder": "පණිවිඩය",
+    "submit": "සබ්මිට් කරන්න"
   },
   "filter": {
-    "title": "පෙරහන් ඇතුළත් කිරීම්",
+    "title": "ෆිල්ටර් කරන්න",
     "province": "පළාත",
-    "district": "දිසා",
-    "city": "නගරය",
+    "district": "දිස්ත්‍රික්කය",
+    "city": "ගම/නගරය",
     "age": "වයස",
     "ageRangeBelow30": "30 ට අඩු",
     "ageRangeBetween30and59": "30 ත් 59 ත් අතර",
     "ageRange60above": "අවුරුදු 60 සහ ඊට වැඩි",
-    "gender": "ස්ත්රී පුරුෂ භාවය",
+    "gender": "ලිංගිකභාවය",
     "genderMale": "පිරිමි",
     "genderFemale": "ගැහැණු",
-    "resetFilters": "පෙරහන නැවත සකසන්න"
+    "resetFilters": "ෆිල්ටරය නැවත සකසන්න"
   }
 }
