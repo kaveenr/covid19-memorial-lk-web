@@ -7,7 +7,8 @@
     },
     "home": {
         "loading": "Loading",
-        "noResults": "No Results"
+        "noResults": "No Results",
+        "endOfResults": "End Of Results"
     },
     "navigation": {
         "about": "About",

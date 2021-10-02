@@ -90,8 +90,8 @@ export default function Home(props) {
               </div>
             }
             endMessage={
-              <div className="text-center text-lg font-semibold p-4 col-span-full">
-                <p>{t('noResults')}</p>
+              <div className="text-center text-lg font-semibold pt-2 pb-4 col-span-full">
+                <div class="divider">{items.length == 0 ? t('noResults') : t('endOfResults')}</div> 
               </div>
             }
           >
