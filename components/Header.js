@@ -95,14 +95,12 @@ const Header = ({ sub }) => {
             </Head>
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
-                    <a>
-                        <Link href="/">
-                            <>
-                                <p className={"text-base"}>{t('title')}</p>
-                                <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
-                            </>
-                        </Link>
-                    </a>
+                    <Link href="/">
+                        <a>
+                            <p className={"text-base"}>{t('title')}</p>
+                            <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
+                        </a>
+                    </Link>
                 </div>
                 <div className="flex-grow-0 flex flex-wrap content-center hidden lg:block">
                     <NavBar/>
