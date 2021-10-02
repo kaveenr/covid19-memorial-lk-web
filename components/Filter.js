@@ -2,13 +2,15 @@ import { useReducer, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/dist/client/router";
+import { useTranslations } from "use-intl";
 
 const geo = require(`../data/geo_latest.json`);
 
 const initialState = {
     init: true,
-    geoType: undefined,
-    geoId: undefined,
+    province: undefined,
+    district: undefined,
+    city: undefined,
     ageRange: undefined,
     gender: undefined,
 };
@@ -24,13 +26,6 @@ const reducer = (pureState, action) => {
                 ...initialState,
                 init: false
             };
-        case "GEO":
-            const geoData = action.value.split("|");
-            return {
-                ...state,
-                geoType: geoData[0],
-                geoId: geoData[1]
-            }
         case "AGE":
             return {
                 ...state,
@@ -41,6 +36,24 @@ const reducer = (pureState, action) => {
                 ...state,
                 gender: action.value
             }
+        case "PROVINCE":
+            return {
+                ...state,
+                province: action.value,
+                district: undefined,
+                city: undefined
+            }
+        case "DISTRICT":
+            return {
+                ...state,
+                district: action.value,
+                city: undefined
+            }
+        case "CITY":
+            return {
+                ...state,
+                city: action.value
+            }
     }
 }
 
@@ -48,6 +61,7 @@ const Filter = ({ setFilter }) => {
 
     const { locale } = useRouter();
     const [filter, dispatch] = useReducer(reducer, initialState);
+    const t = useTranslations('filter');
 
     useEffect(() => {
         if (!filter.init) {
@@ -59,48 +73,56 @@ const Filter = ({ setFilter }) => {
         <div class="collapse collapse-arrow px-0 py-0">
             <input type="checkbox" />
             <div className="collapse-title text-sm font-medium">
-                Filter Results
+                {t('title')}
             </div>
             <div className="collapse-content">
                 <div className="flex flex-col lg:flex-row gap-4">
                     <select className="select select-bordered m-1"
-                        value={filter.geoType ? `${filter.geoType}|${filter.geoId}` : "default"}
+                        value={filter.province || "default"}
                         onChange={event => {
-                            dispatch({ type: "GEO", value: event.target.value })
+                            dispatch({ type: "PROVINCE", value: event.target.value })
                         }}>
-                        <option disabled="disabled" selected="selected" value={"default"}>Location</option>
-                        <option disabled="disabled">{' '}</option>
-                        <option disabled="disabled">Provinces</option>
-                        {geo.provinces.map((d) => (<option value={`province|${d.id}`}>{d[`name_${locale}`]}</option>))}
-                        <option disabled="disabled">{' '}</option>
-                        <option disabled="disabled">Districts</option>
-                        {geo.districts.map((d) => (<option value={`district|${d.id}`}>{d[`name_${locale}`]}</option>))}
-                        <option disabled="disabled">{' '}</option>
-                        <option disabled="disabled">Cities</option>
-                        {geo.cities.filter((d) => (d[`name_${locale}`])).map((d) => (<option value={`city|${d.id}`}>{d[`name_${locale}`]}</option>))}
+                        <option disabled="disabled" selected="selected" value={"default"}>{t('province')}</option>
+                        {geo.provinces.map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
+                    </select>
+                    <select className="select select-bordered m-1" disabled={!filter.province}
+                        value={filter.district || "default"}
+                        onChange={event => {
+                            dispatch({ type: "DISTRICT", value: event.target.value })
+                        }}>
+                        <option disabled="disabled" selected="selected" value={"default"}>{t('district')}</option>
+                        {geo.districts.filter(i => (i.province_id == filter.province)).map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
+                    </select>
+                    <select className="select select-bordered m-1" disabled={!filter.district}
+                        value={filter.city || "default"}
+                        onChange={event => {
+                            dispatch({ type: "CITY", value: event.target.value })
+                        }}>
+                        <option disabled="disabled" selected="selected" value={"default"}>{t('city')}</option>
+                        {geo.cities.filter(i => (i.district_id == filter.district)).filter((d) => (d[`name_${locale}`])).map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
                     <select className="select select-bordered m-1"
                         value={filter.ageRange ? filter.ageRange  : "default"}
                         onChange={event => {
                             dispatch({ type: "AGE", value: event.target.value })
                         }}>
-                        <option disabled="disabled" selected="selected" value={"default"}>Age</option>
-                        <option value="0-30">Below 30</option>
-                        <option value="30-59">Between 30 and 59</option>
-                        <option value="60-120">60 years and above</option>
+                        <option disabled="disabled" selected="selected" value={"default"}>{t('age')}</option>
+                        <option value="0-30">{t('ageRangeBelow30')}</option>
+                        <option value="30-59">{t('ageRangeBetween30and59')}</option>
+                        <option value="60-120">{t('ageRange60above')}</option>
                     </select>
                     <select className="select select-bordered m-1"
                         value={filter.gender ? filter.gender  : "default"}
                         onChange={event => {
                             dispatch({ type: "GENDER", value: event.target.value })
                         }}>
-                        <option disabled="disabled" selected="selected" value={"default"}>Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option disabled="disabled" selected="selected" value={"default"}>{t('gender')}</option>
+                        <option value="Male">{t('genderMale')}</option>
+                        <option value="Female">{t('genderFemale')}</option>
                     </select>
                     <button class="btn m-1" onClick={() => dispatch({ type: "RESET"})}>
                         <FontAwesomeIcon icon={faTimes} size="1x" className="mr-2" />
-                        Reset Filters
+                        {t('resetFilters')}
                     </button>
                 </div>
             </div>

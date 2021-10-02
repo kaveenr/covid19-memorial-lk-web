@@ -6,7 +6,8 @@
     "seoDisc": "இலங்கையில் தொற்றுநோய்களின் போது இறந்த அனைவருக்கும் ஒரு ஆன்லைன் நினைவுச்சின்னம்"
   },
   "home": {
-    "loading": "ஏற்றுகிறது"
+    "loading": "ஏற்றுகிறது",
+    "noResults": "முடிவுகள் இல்லை"
   },
   "navigation": {
     "about": "எம்மைப்பற்றி",
@@ -39,5 +40,19 @@
     "email_placeholder": "john@mail.net",
     "message_placeholder": "எழுதப்பட்ட செய்தி",
     "submit": "சமர்ப்பிக்க"
+  },
+  "filter": {
+    "title": "வடிகட்டி உள்ளீடுகள்",
+    "province": "மாகாணம்",
+    "district": "மாவட்டம்",
+    "city": "நகரம்",
+    "age": "வயது",
+    "ageRangeBelow30": "30 க்கு கீழே",
+    "ageRangeBetween30and59": "30 மற்றும் 59 க்கு இடையில்",
+    "ageRange60above": "60 ஆண்டுகள் மற்றும் அதற்கு மேல்",
+    "gender": "பாலினம்",
+    "genderMale": "ஆண்",
+    "genderFemale": "பெண்",
+    "resetFilters": "வடிப்பான்களை மீட்டமைக்கவும்"
   }
 }

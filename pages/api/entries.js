@@ -20,9 +20,19 @@ export default function dataAPI(req, res) {
   }
 
   // Filter On Geo
-  if (req.query.geoType) {
+  if (req.query.province) {
     slicedData = slicedData.filter((item) => {
-      return item.attributes[req.query.geoType] && item.attributes[req.query.geoType].id == req.query.geoId;
+      return item.attributes.province && item.attributes.province.id == req.query.province;
+    })
+  }
+  if (req.query.district) {
+    slicedData = slicedData.filter((item) => {
+      return item.attributes.district && item.attributes.district.id == req.query.district;
+    })
+  }
+  if (req.query.city) {
+    slicedData = slicedData.filter((item) => {
+      return item.attributes.city && item.attributes.city.id == req.query.city;
     })
   }
 

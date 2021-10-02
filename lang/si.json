@@ -6,7 +6,8 @@
     "seoDisc": "ශ්‍රී ලංකාවේ කෝවිඩ්-19 නිසා මිය ගිය පුද්ගලයින් සිහි කිරීම පිණිස"
   },
   "home": {
-    "loading": "පූරණය වෙමින්"
+    "loading": "පූරණය වෙමින්",
+    "noResults": "ප්රතිපල නැත"
   },
   "navigation": {
     "about": "අප ගැන",
@@ -39,5 +40,19 @@
     "email_placeholder": "john@mail.net",
     "message_placeholder": "ලිඛිත පණිවිඩය",
     "submit": "ඉදිරිපත් කරන්න"
+  },
+  "filter": {
+    "title": "පෙරහන් ඇතුළත් කිරීම්",
+    "province": "පළාත",
+    "district": "දිසා",
+    "city": "නගරය",
+    "age": "වයස",
+    "ageRangeBelow30": "30 ට අඩු",
+    "ageRangeBetween30and59": "30 ත් 59 ත් අතර",
+    "ageRange60above": "අවුරුදු 60 සහ ඊට වැඩි",
+    "gender": "ස්ත්රී පුරුෂ භාවය",
+    "genderMale": "පිරිමි",
+    "genderFemale": "ගැහැණු",
+    "resetFilters": "පෙරහන නැවත සකසන්න"
   }
 }

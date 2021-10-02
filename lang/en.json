@@ -6,7 +6,8 @@
         "seoDisc": "A online memorial for all those who died during the pandemic in Sri Lanka"
     },
     "home": {
-        "loading": "Loading"
+        "loading": "Loading",
+        "noResults": "No Results"
     },
     "navigation": {
         "about": "About",
@@ -39,5 +40,19 @@
         "email_placeholder": "john@mail.net",
         "message_placeholder": "written message",
         "submit": "submit"
+    },
+    "filter": {
+        "title": "Filter Entries",
+        "province": "Province",
+        "district": "District",
+        "city": "City",
+        "age": "Age",
+        "ageRangeBelow30": "Below 30",
+        "ageRangeBetween30and59": "Between 30 and 59",
+        "ageRange60above": "60 years and above",
+        "gender": "Gender",
+        "genderMale": "Male",
+        "genderFemale": "Female",
+        "resetFilters": "Reset Filters"
     }
 }

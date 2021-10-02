@@ -21,6 +21,7 @@ export default function Home(props) {
   const [items, setItems] = useState([]);
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState(null);
+  const [toTop, setToTop] = useState(false);
 
   const t = useTranslations('home');
   const intl = useIntl();
@@ -54,6 +55,7 @@ export default function Home(props) {
   // When user is near intersecting end.
   intersectHook(()=> {
     setOffset((offset) => (offset + 1));
+    setToTop(true);
   }, "50%", loader);
 
   return (
@@ -64,7 +66,7 @@ export default function Home(props) {
 
       <Header />
       <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4 relative"}>
-        <button onClick={()=>{window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}} className={`btn fixed bottom-0 right-0 mb-8 mr-8 ${offset > 1 ? "block" : "hidden"}`}>
+        <button onClick={()=>{window.scrollTo({top: 0, left: 0, behavior: 'smooth'}); setToTop(false)}} className={`btn fixed bottom-0 right-0 mb-8 mr-8 ${toTop ? "block z-50" : "hidden"}`}>
           <FontAwesomeIcon icon={faChevronUp} size="2x"/>
         </button>
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
@@ -83,7 +85,7 @@ export default function Home(props) {
           <Filter setFilter={(f) => {setFilter(f)}}/>
         </div>
         {items.length == 0 && !isFetching ? (<div className="p-8 text-center text-lg font-semibold">
-          <p>No Results</p>
+          <p>{t('noResults')}</p>
         </div>): (
           <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
             {items.map((i) => (<Entry key={i.id} data={i}/>))}
