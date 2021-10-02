@@ -55,7 +55,9 @@ export default function Home(props) {
 
   // When user is near intersecting end.
   intersectHook(()=> {
-    setOffset((offset) => (offset + 1));
+    if (items.length >= 0) {
+      setOffset((offset) => (offset + 1));
+    }
   }, "50%", loader);
 
   // intersectHook(()=> {
@@ -97,7 +99,7 @@ export default function Home(props) {
         )}
       </main>
       <div key="loader" ref={loader}>
-          {isFetching? (<div className="text-center text-lg font-semibold px-4">
+          {isFetching? (<div className="text-center text-lg font-semibold p-4">
             <FontAwesomeIcon className="animate-spin w-5 h-5" icon={faSpinner} />
             <p>{t('loading')}</p>
           </div>) : []}
