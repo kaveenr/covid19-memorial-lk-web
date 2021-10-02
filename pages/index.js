@@ -1,11 +1,10 @@
 import { last } from 'lodash';
 import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import Entry from '../components/Entry';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { intersectHook } from '../utils/hooks';
 import { fetchEntries } from '../utils/queries';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faChevronUp } from '@fortawesome/free-solid-svg-icons'
@@ -15,11 +14,11 @@ import { MDXRemote } from 'next-mdx-remote'
 import Filter from '../components/Filter';
 import { useRouter } from 'next/dist/client/router';
 import Overlay from '../components/Overlay';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home(props) {
 
   const queryClient = useQueryClient()
-  const loader = useRef(null);
   const { locale } = useRouter();
   const t = useTranslations('home');
   const intl = useIntl();
@@ -28,6 +27,7 @@ export default function Home(props) {
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [hasNext, setHasNext] = useState(false);
 
   // Fetch Entries, on initial offset use rendered dataset.
   const { status, data, error, isFetching } = useQuery(['entries', offset, filter, locale],
@@ -43,7 +43,10 @@ export default function Home(props) {
       setItems((items) => (offset == 0 ? [...data.data] : [...items, ...data.data]));
       // If Next Link Available, then pre-fetch.
       if (data.links.next){
+        setHasNext(true);
         queryClient.prefetchQuery(['entries', offset + 1, filter, locale], () => fetchEntries(offset + 1, filter, locale));
+      } else {
+        setHasNext(false);
       }
     }
   }, [status, data]);
@@ -54,11 +57,6 @@ export default function Home(props) {
       setOffset(0);
     }
   }, [filter])
-
-  // When user is near intersecting end.
-  intersectHook(()=> {
-    setOffset((offset) => (offset + 1));
-  }, "50%", loader);
 
   return (
     <>
@@ -84,20 +82,26 @@ export default function Home(props) {
           <Filter setFilter={(f) => {setFilter(f)}}/>
         </div>
         <Overlay data={selected} close={()=>{setSelected(null)}}/>
-        {items.length == 0 && !isFetching ? (<div className="p-8 text-center text-lg font-semibold">
-          <p>{t('noResults')}</p>
-        </div>): (
-          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
+        <InfiniteScroll
+            dataLength={items.length}
+            className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2"
+            next={()=> {setOffset((offset) => (offset + 1))}}
+            hasMore={hasNext}
+            loader={
+              <div className="text-center text-lg font-semibold p-4 col-span-full">
+                <FontAwesomeIcon className="animate-spin w-5 h-5" icon={faSpinner} />
+                <p>{t('loading')}</p>
+              </div>
+            }
+            endMessage={
+              <div className="text-center text-lg font-semibold p-4 col-span-full">
+                <p>{t('noResults')}</p>
+              </div>
+            }
+          >
             {items.map((i) => (<Entry key={i.id} data={i} onClick={() => {setSelected(i)}}/>))}
-          </div>
-        )}
+        </InfiniteScroll>
       </main>
-      <div key="loader" ref={loader}>
-          {isFetching? (<div className="text-center text-lg font-semibold p-4">
-            <FontAwesomeIcon className="animate-spin w-5 h-5" icon={faSpinner} />
-            <p>{t('loading')}</p>
-          </div>) : []}
-      </div>
       <Footer/>
     </>
   )

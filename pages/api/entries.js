@@ -9,12 +9,12 @@ export default function dataAPI(req, res) {
   const arrayOffset = offset * limit;
 
   // Set initial data.
-  let slicedData = data;
+  let filteredData = data;
   
   // Filter Age Range
   if (req.query.ageRange) {
     const ages = req.query.ageRange.split("-").map((age) => (parseInt(age)));
-    slicedData = slicedData.filter((item) => {
+    filteredData = filteredData.filter((item) => {
       const itemAge = parseInt(item.attributes.ageValue);
       return itemAge >= ages[0] && itemAge <= ages[1];
     })
@@ -22,30 +22,30 @@ export default function dataAPI(req, res) {
 
   // Filter On Geo
   if (req.query.province) {
-    slicedData = slicedData.filter((item) => {
+    filteredData = filteredData.filter((item) => {
       return item.attributes.province && item.attributes.province.id == req.query.province;
     })
   }
   if (req.query.district) {
-    slicedData = slicedData.filter((item) => {
+    filteredData = filteredData.filter((item) => {
       return item.attributes.district && item.attributes.district.id == req.query.district;
     })
   }
   if (req.query.city) {
-    slicedData = slicedData.filter((item) => {
+    filteredData = filteredData.filter((item) => {
       return item.attributes.city && item.attributes.city.id == req.query.city;
     })
   }
 
   // Filter On Gender
   if (req.query.gender) {
-    slicedData = slicedData.filter((item) => {
+    filteredData = filteredData.filter((item) => {
       return item.attributes.gender == req.query.gender;
     })
   }
 
   // Finally Paginate
-  slicedData = slice(slicedData, arrayOffset, arrayOffset + limit).map((i) => {
+  const slicedData = slice(filteredData, arrayOffset, arrayOffset + limit).map((i) => {
     return {
       ...i, 
       attributes: {
@@ -62,7 +62,7 @@ export default function dataAPI(req, res) {
   }
   
   // Set Pagination Link if next offset contains data. 
-  if (data.length >= ((offset +1) * limit)) {
+  if (filteredData.length >= ((offset +1) * limit)) {
     links["next"] = `/api/entries?offset=${offset +1}&limit=${limit}`;
   }
 
