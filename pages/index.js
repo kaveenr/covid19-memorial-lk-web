@@ -1,4 +1,4 @@
-import { last, slice, toInteger } from 'lodash';
+import { last } from 'lodash';
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
@@ -21,7 +21,6 @@ export default function Home(props) {
   const [items, setItems] = useState([]);
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState(null);
-  // const [toTop, setToTop] = useState(false);
 
   const t = useTranslations('home');
   const intl = useIntl();
@@ -49,20 +48,13 @@ export default function Home(props) {
   useEffect(() => {
     if (filter) {
       setOffset(0);
-      // setToTop(false);
     }
   }, [filter])
 
   // When user is near intersecting end.
   intersectHook(()=> {
-    if (items.length >= 0) {
-      setOffset((offset) => (offset + 1));
-    }
-  }, "50%", loader);
-
-  // intersectHook(()=> {
-  //   setToTop(true);
-  // }, "5%", loader);
+    setOffset((offset) => (offset + 1));
+  }, "15%", loader);
 
   return (
     <>
@@ -72,9 +64,6 @@ export default function Home(props) {
 
       <Header />
       <main className={"md:container min-h-screen mx-auto px-4 py-1 mb-4 relative"}>
-        {/* <button onClick={()=>{window.scrollTo({top: 0, left: 0, behavior: 'smooth'}); setToTop(false)}} className={`btn fixed bottom-0 right-0 mb-8 mr-8 ${toTop ? "block z-50" : "hidden"}`}>
-          <FontAwesomeIcon icon={faChevronUp} size="2x"/>
-        </button> */}
         <div className="bg-base-300 rounded-xl my-1 lg:my-4">
           <div className="card">
             <div className="card-body text-sm md:text-base">
