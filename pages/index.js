@@ -13,21 +13,25 @@ import { useIntl, useTranslations } from 'use-intl';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import Filter from '../components/Filter';
+import { useRouter } from 'next/dist/client/router';
+import Overlay from '../components/Overlay';
 
 export default function Home(props) {
 
   const queryClient = useQueryClient()
   const loader = useRef(null);
-  const [items, setItems] = useState([]);
-  const [offset, setOffset] = useState(0);
-  const [filter, setFilter] = useState(null);
-
+  const { locale } = useRouter();
   const t = useTranslations('home');
   const intl = useIntl();
 
+  const [items, setItems] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [filter, setFilter] = useState(null);
+  const [selected, setSelected] = useState(null);
+
   // Fetch Entries, on initial offset use rendered dataset.
-  const { status, data, error, isFetching } = useQuery(['entries', offset, filter],
-    () => (fetchEntries(offset, filter)),
+  const { status, data, error, isFetching } = useQuery(['entries', offset, filter, locale],
+    () => (fetchEntries(offset, filter, locale)),
     { keepPreviousData: true, staleTime: 5000 }
   )
 
@@ -39,7 +43,7 @@ export default function Home(props) {
       setItems((items) => (offset == 0 ? [...data.data] : [...items, ...data.data]));
       // If Next Link Available, then pre-fetch.
       if (data.links.next){
-        queryClient.prefetchQuery(['entries', offset + 1, filter], () => fetchEntries(offset + 1, filter));
+        queryClient.prefetchQuery(['entries', offset + 1, filter, locale], () => fetchEntries(offset + 1, filter, locale));
       }
     }
   }, [status, data]);
@@ -79,11 +83,12 @@ export default function Home(props) {
         <div className="pt-1">
           <Filter setFilter={(f) => {setFilter(f)}}/>
         </div>
+        <Overlay data={selected} close={()=>{setSelected(null)}}/>
         {items.length == 0 && !isFetching ? (<div className="p-8 text-center text-lg font-semibold">
           <p>{t('noResults')}</p>
         </div>): (
           <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2">
-            {items.map((i) => (<Entry key={i.id} data={i}/>))}
+            {items.map((i) => (<Entry key={i.id} data={i} onClick={() => {setSelected(i)}}/>))}
           </div>
         )}
       </main>

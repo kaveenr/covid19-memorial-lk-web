@@ -4,7 +4,8 @@ const data = require("../../data/latest.json");
 export default function dataAPI(req, res) {
   
   const offset = parseInt(req.query.offset) || 0;
-  const limit = parseInt(req.query.limit) || 50;
+  const limit = parseInt(req.query.limit) || 100;
+  const lang = req.query.locale || "en";
   const arrayOffset = offset * limit;
 
   // Set initial data.
@@ -44,7 +45,17 @@ export default function dataAPI(req, res) {
   }
 
   // Finally Paginate
-  slicedData = slice(slicedData, arrayOffset, arrayOffset + limit)
+  slicedData = slice(slicedData, arrayOffset, arrayOffset + limit).map((i) => {
+    return {
+      ...i, 
+      attributes: {
+        ...i.attributes,
+        province: i.attributes.province ? i.attributes.province[`name_${lang}`] || i.attributes.province.name_en : undefined,
+        district: i.attributes.district ? i.attributes.district[`name_${lang}`] || i.attributes.district.name_en : undefined,
+        city: i.attributes.city ? i.attributes.city[`name_${lang}`] || i.attributes.city.name_en : undefined
+      }
+    }
+  });
 
   let links = {
     self: req.url
