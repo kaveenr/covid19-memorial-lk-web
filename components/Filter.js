@@ -72,7 +72,7 @@ const Filter = ({ setFilter }) => {
     return (
         <div className="collapse collapse-arrow px-0 py-0">
             <input type="checkbox" />
-            <div className="collapse-title text-sm font-medium">
+            <div className="collapse-title text-sm font-bold">
                 {t('title')}
             </div>
             <div className="collapse-content">

@@ -27,7 +27,7 @@ export default function Home(props) {
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState(null);
   const [selected, setSelected] = useState(null);
-  const [hasNext, setHasNext] = useState(false);
+  const [hasNext, setHasNext] = useState(true);
 
   // Fetch Entries, on initial offset use rendered dataset.
   const { status, data, error, isFetching } = useQuery(['entries', offset, filter, locale],
@@ -88,8 +88,8 @@ export default function Home(props) {
             next={()=> {setOffset((offset) => (offset + 1))}}
             hasMore={hasNext}
             loader={
-              <div className="text-center text-lg font-semibold p-4 col-span-full">
-                <FontAwesomeIcon className="animate-spin w-5 h-5" icon={faSpinner} />
+              <div className="text-center text-xl font-semibold p-4 col-span-full">
+                <FontAwesomeIcon className="animate-spin" icon={faSpinner} size="2x" />
                 <p>{t('loading')}</p>
               </div>
             }
