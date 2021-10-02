@@ -76,8 +76,8 @@ const Filter = ({ setFilter }) => {
                 {t('title')}
             </div>
             <div className="collapse-content">
-                <div className="flex flex-col lg:flex-row gap-4">
-                    <select className="select select-bordered m-1"
+                <div className="flex flex-col lg:flex-row gap-3">
+                    <select className="select select-bordered "
                         value={filter.province || "default"}
                         onChange={event => {
                             dispatch({ type: "PROVINCE", value: event.target.value })
@@ -85,7 +85,7 @@ const Filter = ({ setFilter }) => {
                         <option disabled="disabled" selected="selected" value={"default"}>{t('province')}</option>
                         {geo.provinces.map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
-                    <select className="select select-bordered m-1" disabled={!filter.province}
+                    <select className="select select-bordered " disabled={!filter.province}
                         value={filter.district || "default"}
                         onChange={event => {
                             dispatch({ type: "DISTRICT", value: event.target.value })
@@ -93,7 +93,7 @@ const Filter = ({ setFilter }) => {
                         <option disabled="disabled" selected="selected" value={"default"}>{t('district')}</option>
                         {geo.districts.filter(i => (i.province_id == filter.province)).map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
-                    <select className="select select-bordered m-1" disabled={!filter.district}
+                    <select className="select select-bordered " disabled={!filter.district}
                         value={filter.city || "default"}
                         onChange={event => {
                             dispatch({ type: "CITY", value: event.target.value })
@@ -101,7 +101,7 @@ const Filter = ({ setFilter }) => {
                         <option disabled="disabled" selected="selected" value={"default"}>{t('city')}</option>
                         {geo.cities.filter(i => (i.district_id == filter.district)).filter((d) => (d[`name_${locale}`])).map((d) => (<option value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
-                    <select className="select select-bordered m-1"
+                    <select className="select select-bordered "
                         value={filter.ageRange ? filter.ageRange  : "default"}
                         onChange={event => {
                             dispatch({ type: "AGE", value: event.target.value })
@@ -111,7 +111,7 @@ const Filter = ({ setFilter }) => {
                         <option value="30-59">{t('ageRangeBetween30and59')}</option>
                         <option value="60-120">{t('ageRange60above')}</option>
                     </select>
-                    <select className="select select-bordered m-1"
+                    <select className="select select-bordered "
                         value={filter.gender ? filter.gender  : "default"}
                         onChange={event => {
                             dispatch({ type: "GENDER", value: event.target.value })
@@ -120,7 +120,7 @@ const Filter = ({ setFilter }) => {
                         <option value="Male">{t('genderMale')}</option>
                         <option value="Female">{t('genderFemale')}</option>
                     </select>
-                    <button class="btn m-1" onClick={() => dispatch({ type: "RESET"})}>
+                    <button class="btn " onClick={() => dispatch({ type: "RESET"})}>
                         <FontAwesomeIcon icon={faTimes} size="1x" className="mr-2" />
                         {t('resetFilters')}
                     </button>
