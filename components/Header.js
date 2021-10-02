@@ -37,17 +37,17 @@ const NavBar = () => {
     const t = useTranslations('navigation');
     return (
         <ul className="flex flex-col lg:flex-row text-left lg:text-center container mx-auto font-bold">
-            <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/about"><a className="hover:underline">{t('about')}</a></Link>
+            <li key={"0"} className="flex-grow py-2 lg:py-3 mr-6" >
+                <a className="hover:underline"><Link href="/[slug]" as="/about">{t('about')}</Link></a>
             </li>
             <li key={"1"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/approach"><a className="hover:underline">{t('approach')}</a></Link>
+                <a className="hover:underline"><Link href="/[slug]" as="/approach">{t('approach')}</Link></a>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/submit"><a className="hover:underline">{t('submit')}</a></Link>
+                <a className="hover:underline"><Link href="/[slug]" as="/submit">{t('submit')}</Link></a>
             </li>
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <Link href="/[slug]" as="/contact"><a className="hover:underline">{t('contact')}</a></Link>
+                <a className="hover:underline"><Link href="/[slug]" as="/contact">{t('contact')}</Link></a>
             </li>
         </ul>
     );
@@ -95,12 +95,14 @@ const Header = ({ sub }) => {
             </Head>
             <div className="flex h-full container lg:w-kw mx-auto px-4 py-3 pt-6 lg:pt-8 lg:content-end">
                 <div className="flex-grow flex flex-wrap mx-1">
-                    <Link href="/">
-                        <a>
-                            <p className={"text-base"}>{t('title')}</p>
-                            <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
-                        </a>
-                    </Link>
+                    <a>
+                        <Link href="/">
+                            <>
+                                <p className={"text-base"}>{t('title')}</p>
+                                <p className={"text-xs md:text-base font-semibold"}>{t('subtitle')}</p>
+                            </>
+                        </Link>
+                    </a>
                 </div>
                 <div className="flex-grow-0 flex flex-wrap content-center hidden lg:block">
                     <NavBar/>
@@ -114,26 +116,26 @@ const Header = ({ sub }) => {
                         <ul tabIndex="0" className="p-1 shadow menu dropdown-content bg-base-100 rounded-box">
                             <li>
                                 <a href={`/si/${asPath}`}>
-                                    <a>සිංහල</a>
+                                    සිංහල
                                 </a>
                             </li> 
                             <li>
                                 <a href={`/ta/${asPath}`}>
-                                    <a>தமிழ்</a>
+                                    தமிழ்
                                 </a>
                             </li> 
                             <li>
                                 <a href={`/en/${asPath}`}>
-                                    <a>English</a>
+                                    English
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className="flex-grow-0 flex flex-wrap content-center">
-                    <a className="mx-1 block lg:hidden" href="#" onClick={(ev)=> {ev.preventDefault();setMenu(!menuEnabled)}}>
+                    <button className="mx-1 block lg:hidden" onClick={(ev)=> {ev.preventDefault();setMenu(!menuEnabled)}}>
                         <FontAwesomeIcon className="w-5 h-5" icon={faBars} />
-                    </a>
+                    </button>
                 </div>
                 {/* <div className="flex-grow-0 flex-wrap content-center mr-2 hidden lg:flex">
                     <ThemeSwitcher/>
