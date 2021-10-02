@@ -113,19 +113,19 @@ const Header = ({ sub }) => {
                         </div> 
                         <ul tabIndex="0" className="p-1 shadow menu dropdown-content bg-base-100 rounded-box">
                             <li>
-                                <Link href={asPath} locale="si">
+                                <a href={`/si/${asPath}`}>
                                     <a>සිංහල</a>
-                                </Link>
+                                </a>
                             </li> 
                             <li>
-                                <Link href={asPath} locale="ta">
+                                <a href={`/ta/${asPath}`}>
                                     <a>தமிழ்</a>
-                                </Link>
+                                </a>
                             </li> 
                             <li>
-                                <Link href={asPath} locale="en">
+                                <a href={`/en/${asPath}`}>
                                     <a>English</a>
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </div>
