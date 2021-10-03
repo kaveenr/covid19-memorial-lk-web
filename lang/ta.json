@@ -43,7 +43,7 @@
     "submit": "சமர்ப்பிக்க"
   },
   "filter": {
-    "title": "வடிகட்டி உள்ளீடுகள்",
+    "title": "வடிகட்டி (Filter)",
     "province": "மாகாணம்",
     "selectProvince": "முதலில் ஒரு மாகாணத்தைத் தேர்ந்தெடுக்கவும்",
     "district": "மாவட்டம்",
@@ -56,6 +56,6 @@
     "gender": "பாலினம்",
     "genderMale": "ஆண்",
     "genderFemale": "பெண்",
-    "resetFilters": "வடிகட்டு மீளமைப்பு"
+    "resetFilters": "வடிகட்டல்களை நிலை மீட்டல்"
   }
 }
