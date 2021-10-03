@@ -10,6 +10,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const Entry = ({ data, onClick }) => {
 
     const [detailVisible, setDetailVisible] = useState(false);
+    const [offset, setOffset] = useState(null)
     const t = useTranslations('entry');
     const intl = useIntl();
 
@@ -18,7 +19,7 @@ const Entry = ({ data, onClick }) => {
     }
 
     return (
-        <div className="relative" onMouseOver={(e) => (setDetailVisible(true))} onMouseLeave={(e) => (setDetailVisible(false))} onClick={() => {onClick()}}>
+        <div className="relative" onMouseOver={(e) => {setDetailVisible(true); if (!offset) setOffset((100 * e.clientX) / screen.width);}} onMouseLeave={(e) => (setDetailVisible(false))} onClick={() => {onClick()}}>
             <a className={`py-4 flex flex-col items-center relative ${detailVisible ? "scale-110" : ""} transition-transform duration-700 ease-out cursor-pointer`}>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
                 <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
@@ -26,7 +27,7 @@ const Entry = ({ data, onClick }) => {
                 <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
             </a>
             {detailVisible ? (
-                <div className={`card hidden lg:block rounded-none rounded-t-lg lg:rounded-lg bg-base-200 p-4 shadow-xl overflow-hidden opacity-100 z-30 rounded-xl w-80 fixed bottom-auto left-1/3 absolute top-1/3 transition-opacity duration-150 ease-in-out`}>
+                <div className={`card hidden lg:block rounded-none rounded-t-lg lg:rounded-lg bg-base-200 p-4 shadow-xl overflow-hidden opacity-100 z-30 rounded-xl w-80 fixed bottom-auto ${offset < 50 ? "left" : "right"}-1/3 absolute top-1/3 transition-opacity duration-150 ease-in-out`}>
                     <div className="absolute top-2 right-1 md:hidden">
                         <button className="px-2 py-2" onClick={()=> {setDetailVisible(false)}}>
                             <FontAwesomeIcon size="lg" icon={faTimes} />

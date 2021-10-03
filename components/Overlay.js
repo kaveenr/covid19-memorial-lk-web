@@ -19,7 +19,7 @@ const Overlay = ({ data, close }) => {
             <div onClick={()=> {close()}}
                 className={`fixed top-0 left-0 w-screen h-screen bg-black z-40 opacity-50 overflow-hidden ${!data ? "hidden" : "fixed"}`}/>
             {data ? (
-                <div className={`card rounded-none bg-base-200 w-full lg:w-1/2 rounded-t-3xl z-50 fixed bottom-0 left-0 lg:left-36 px-8 pb-6`}>
+                <div className={`card rounded-none bg-base-200 w-full  md:w-1/2 lg:w-1/3 rounded-t-3xl z-50 fixed bottom-0 left-0 lg:left-36 px-8 pb-6`}>
                     <div className="absolute top-2 right-1">
                         <button className="px-4 py-2" onClick={()=> {close()}}>
                             <FontAwesomeIcon size="lg" icon={faTimes} />
