@@ -43,7 +43,7 @@
         "submit": "submit"
     },
     "filter": {
-        "title": "Filter Entries",
+        "title": "Filter",
         "province": "Province",
         "district": "District",
         "city": "Village/City",
