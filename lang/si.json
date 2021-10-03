@@ -45,7 +45,9 @@
   "filter": {
     "title": "ෆිල්ටර් කරන්න",
     "province": "පළාත",
+    "selectProvince": "පළමුව පළාතක් තෝරන්න",
     "district": "දිස්ත්‍රික්කය",
+    "selectDistrict": "පළමුව පළාතක්/දිස්ත්‍රික්කයක් තෝරන්න",
     "city": "ගම/නගරය",
     "age": "වයස",
     "ageRangeBelow30": "30 ට අඩු",

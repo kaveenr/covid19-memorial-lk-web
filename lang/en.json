@@ -45,7 +45,9 @@
     "filter": {
         "title": "Filter",
         "province": "Province",
+        "selectProvince": "Select A Province First",
         "district": "District",
+        "selectDistrict": "Select A Province/District First",
         "city": "Village/City",
         "age": "Age",
         "ageRangeBelow30": "Below 30",
