@@ -92,7 +92,7 @@ const Filter = ({ setFilter }) => {
                         onChange={event => {
                             dispatch({ type: "DISTRICT", value: event.target.value })
                         }}>
-                        <option disabled="disabled" value={"default"}>{filter.province ? t('district') : t('selectProvince')}</option>
+                        <option disabled="disabled" value={"default"}>{t('district')}</option>
                         {geo.districts.filter(i => (i.province_id == filter.province)).map((d) => (<option key={d.id} value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
                     <select className="select select-bordered " disabled={!filter.district}
@@ -101,7 +101,7 @@ const Filter = ({ setFilter }) => {
                         onChange={event => {
                             dispatch({ type: "CITY", value: event.target.value })
                         }}>
-                        <option disabled="disabled" value={"default"}>{filter.district ? t('city') : t('selectDistrict')}</option>
+                        <option disabled="disabled" value={"default"}>{t('city')}</option>
                         {geo.cities.filter(i => (i.district_id == filter.district)).filter((d) => (d[`name_${locale}`])).map((d) => (<option key={d.id} value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
                     <select className="select select-bordered"
