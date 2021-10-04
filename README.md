@@ -14,11 +14,15 @@ This repository contains software for viewing victims of COVID-19 in Sri Lanka.
 
 ### local develop instructions
 
-1. Download Source Data
+1. Install dependencies.
+   ```sh
+   yarn install
+   ````
+2. Download Source Data
    ```sh
    yarn download
    ````
-2. Start development server
+3. Start development server
    ```sh
    yarn dev
    ````
