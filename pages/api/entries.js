@@ -66,6 +66,8 @@ export default function dataAPI(req, res) {
     links["next"] = `/api/entries?offset=${offset +1}&limit=${limit}`;
   }
 
+  console.log(`Request Params ${JSON.stringify(req.query)} yielded "${slicedData.length}" results`);
+
   res.status(200).json({
     data : slicedData,
     links: links
