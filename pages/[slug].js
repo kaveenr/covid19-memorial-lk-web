@@ -18,19 +18,19 @@ const ContactForm = () => {
                             <label className="label">
                                 <span className="label-text">{t('name')}</span>
                             </label> 
-                            <input type="text" name="name" placeholder={t('name_placeholder')} className="input"/>
+                            <input type="text" name="name" placeholder={t('name_placeholder')} className="input" required/>
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">{t('email')}</span>
                             </label> 
-                            <input type="email" name="email" placeholder={t('email_placeholder')} className="input"/>
+                            <input type="email" name="email" placeholder={t('email_placeholder')} className="input" required/>
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">{t('message')}</span>
                             </label> 
-                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')}></textarea>
+                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
                         </div>
                         <div className="form-control pt-8">
                             <button type="submit" className="btn">{t('submit')}</button> 
