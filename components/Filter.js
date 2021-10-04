@@ -102,7 +102,11 @@ const Filter = ({ setFilter }) => {
                             dispatch({ type: "CITY", value: event.target.value })
                         }}>
                         <option disabled="disabled" value={"default"}>{t('city')}</option>
-                        {geo.cities.filter(i => (i.district_id == filter.district)).filter((d) => (d[`name_${locale}`])).map((d) => (<option key={d.id} value={d.id}>{d[`name_${locale}`]}</option>))}
+                        {geo.cities
+                            .filter(i => (i.district_id == filter.district))
+                            .filter((d) => (d[`name_${locale}`]))
+                            .sort((a, b) => String(a[`name_${locale}`]).localeCompare(b[`name_${locale}`]))
+                            .map((d) => (<option key={d.id} value={d.id}>{d[`name_${locale}`]}</option>))}
                     </select>
                     <select className="select select-bordered"
                         defaultValue={"default"}
