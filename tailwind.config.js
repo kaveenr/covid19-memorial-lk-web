@@ -43,7 +43,8 @@ module.exports = {
           "error": "#ff5724",
           "--rounded-box": "1rem",
           "--rounded-btn": "0.5rem",
-          "--rounded-badge": "1.9rem"
+          "--rounded-badge": "1.9rem",
+          "fontFamily": "Noto Sans,Noto Sans Sinhala,Noto Sans Tamil",
         }
       }
     ],
