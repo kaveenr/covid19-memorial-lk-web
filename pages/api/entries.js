@@ -1,4 +1,4 @@
-import { slice } from "lodash";
+import { slice, reduce } from "lodash";
 const data = require("../../data/latest.json");
 
 export default function dataAPI(req, res) {
@@ -44,6 +44,8 @@ export default function dataAPI(req, res) {
     })
   }
 
+  console.log(`Received params ${reduce(req.query, (r,v,k) => (`${r} ${k}="${v}"`))}`)
+
   // Finally Paginate
   const slicedData = slice(filteredData, arrayOffset, arrayOffset + limit).map((i) => {
     return {
@@ -66,6 +68,7 @@ export default function dataAPI(req, res) {
     links["next"] = `/api/entries?offset=${offset +1}&limit=${limit}`;
   }
 
+  console.log(`Yielded ${slicedData.length} results for ${Object.keys(req.query).length} number of params`);
   res.status(200).json({
     data : slicedData,
     links: links

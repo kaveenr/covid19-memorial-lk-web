@@ -15,6 +15,7 @@ import Filter from '../components/Filter';
 import { useRouter } from 'next/dist/client/router';
 import Overlay from '../components/Overlay';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { event } from '../utils/gtag';
 
 export default function Home(props) {
 
@@ -81,7 +82,10 @@ export default function Home(props) {
         <InfiniteScroll
             dataLength={items.length}
             className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2"
-            next={()=> {setOffset((offset) => (offset + 1))}}
+            next={()=> {
+              setOffset((offset) => (offset + 1));
+              event("home_page", "pagination", "Loaded More", offset);
+            }}
             hasMore={hasNext}
             loader={
               <div className="text-center text-xl font-semibold p-4 col-span-full">

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/dist/client/router";
 import { useTranslations } from "use-intl";
+import { event } from "../utils/gtag";
 
 const geo = require(`../data/geo_latest.json`);
 
@@ -27,16 +28,19 @@ const reducer = (pureState, action) => {
                 init: false
             };
         case "AGE":
+            event("filter_home", "filter", "Filter Age", action.value);
             return {
                 ...state,
                 ageRange: action.value
             }
         case "GENDER":
+            event("filter_home", "filter", "Filter Gender", action.value);
             return {
                 ...state,
                 gender: action.value
             }
         case "PROVINCE":
+            event("filter_home", "filter", "Filter Province", action.value);
             return {
                 ...state,
                 province: action.value,
@@ -44,12 +48,14 @@ const reducer = (pureState, action) => {
                 city: undefined
             }
         case "DISTRICT":
+            event("filter_home", "filter", "Filter District", action.value);
             return {
                 ...state,
                 district: action.value,
                 city: undefined
             }
         case "CITY":
+            event("filter_home", "filter", "Filter City", action.value);
             return {
                 ...state,
                 city: action.value
