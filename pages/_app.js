@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css'
 import { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import { pageview } from '../utils/gtag';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 function MyApp({ Component, pageProps }) {
 
@@ -36,7 +37,9 @@ function MyApp({ Component, pageProps }) {
         now={new Date(pageProps.now)}
       >
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
         </QueryClientProvider>
       </NextIntlProvider>
     </div>
