@@ -5,6 +5,7 @@ import { useIntl, useTranslations } from "use-intl";
 import FlowerImg from '../public/img/icon.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { event } from "../utils/gtag";
 
 
 const Entry = ({ data, onClick }) => {
@@ -19,7 +20,11 @@ const Entry = ({ data, onClick }) => {
     }
 
     return (
-        <div className="relative" onMouseOver={(e) => {setDetailVisible(true); if (!offset) setOffset((100 * e.clientX) / screen.width);}} onMouseLeave={(e) => (setDetailVisible(false))} onClick={() => {onClick()}}>
+        <div className="relative" onMouseOver={(e) => {setDetailVisible(true); if (!offset) setOffset((100 * e.clientX) / screen.width);}} onMouseLeave={(e) => (setDetailVisible(false))} 
+            onClick={() => {
+                onClick();
+                event("expand_user", "detail", "Expanded Entry", data.id);
+            }}>
             <a className={`py-4 flex flex-col items-center relative ${detailVisible ? "scale-110" : ""} transition-transform duration-700 ease-out cursor-pointer`}>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
                 <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
