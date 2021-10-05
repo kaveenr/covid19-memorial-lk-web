@@ -27,7 +27,7 @@ const Entry = ({ data, onClick }) => {
                 <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
             </a>
             {detailVisible ? (
-                <div className={`card hidden lg:block rounded-none rounded-t-lg lg:rounded-lg bg-base-200 p-4 shadow-xl overflow-hidden opacity-100 z-30 rounded-xl w-80 fixed bottom-auto ${offset < 50 ? "left" : "right"}-1/3 absolute top-1/3 transition-opacity duration-150 ease-in-out`}>
+                <div className={`card hidden lg:block rounded-none rounded-t-lg lg:rounded-lg bg-base-200 p-4 shadow-xl overflow-hidden opacity-100 z-30 rounded-xl w-80 fixed bottom-auto ${offset < 50 ? "left-1/3" : "right-1/3"} absolute top-1/3 transition-opacity duration-150 ease-in-out`}>
                     <div className="absolute top-2 right-1 md:hidden">
                         <button className="px-2 py-2" onClick={()=> {setDetailVisible(false)}}>
                             <FontAwesomeIcon size="lg" icon={faTimes} />
