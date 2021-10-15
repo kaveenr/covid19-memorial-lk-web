@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { useTranslations } from 'use-intl';
+import { FORM_LINK } from '../utils/constants';
 
 const ContactForm = () => {
 
@@ -83,6 +84,17 @@ export async function getStaticProps({locale, params}) {
 
     const fs = require('fs')
     const source = fs.readFileSync(`data/content/${params.slug}_${locale}.mdx`, {encoding:'utf8', flag:'r'});
+
+    // Form Redirect Handle
+    if (params.slug === "submit") {
+        return {
+            redirect: {
+                permanent: false,
+                destination: FORM_LINK
+            }
+        }
+    }
+
     const mdxSource = await serialize(source)
     return {
         props: {
