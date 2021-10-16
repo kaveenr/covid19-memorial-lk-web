@@ -44,7 +44,7 @@ const NavBar = () => {
                 <a className="hover:underline"><Link href="/[slug]" as="/approach">{t('approach')}</Link></a>
             </li>
             <li key={"2"} className="flex-grow py-2 lg:py-3 mr-6" >
-                <a className="hover:underline" href="/submit">{t('submit')}</a>
+                <a className="hover:underline" href="https://forms.gle/FcKAxdto2YHTRjpm7" target="_blank">{t('submit')}</a>
             </li>
             <li key={"3"} className="flex-grow py-2 lg:py-3 mr-6" >
                 <a className="hover:underline"><Link href="/[slug]" as="/contact">{t('contact')}</Link></a>
