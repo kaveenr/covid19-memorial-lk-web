@@ -88,9 +88,9 @@ export default function Home(props) {
             }}
             hasMore={hasNext}
             loader={
-              <div className="text-center text-xl font-semibold p-4 col-span-full">
+              <div className="col-span-full text-center py-8">
                 <FontAwesomeIcon className="animate-spin" icon={faSpinner} size="2x" />
-                <p>{t('loading')}</p>
+                <p className="text-xl font-semibold">{t('loading')}</p>
               </div>
             }
             endMessage={

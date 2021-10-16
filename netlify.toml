@@ -10,3 +10,9 @@
   command = "yarn dev"
   targetPort = 3000
   port = 8888
+
+[[redirects]]
+  from = "/submit"
+  to = "https://forms.gle/FcKAxdto2YHTRjpm7"
+  status = 302
+  force = true
