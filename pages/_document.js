@@ -31,28 +31,6 @@ const MyDocument = () => {
             </Head>
 
             <body className="bg-base-100 min-h-screen">
-                {/* Help Netlify Find Forms */}
-                <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-                    <input type="text" name="name" />
-                    <input type="email" name="email" />
-                    <textarea name="message"></textarea>
-                </form>
-                <form name="submission" netlify netlify-honeypot="bot-field" hidden>
-                    <input type="number" name="age" required/>   
-                    <input type="text" name="gender" required/>
-                    <input type="text" name="location" required/>
-                    <input type="date" name="dateOfDeath" required/>
-                    <input type="text" name="name" required/>
-                    <input type="checkbox" name="displayName" />
-                    <input type="checkbox" name="occupation" />
-                    <input type="file" name="photoFile" />
-                    <textarea name="detailText" />
-
-                    <input type="file" name="proofFile" required/>
-                    <input type="text" name="submitterName" required/>
-                    <input type="text" name="submitterEmail" required/>
-                    <input type="text" name="submitterPhone" />
-                </form>
                 <Main />
                 <NextScript />
             </body>

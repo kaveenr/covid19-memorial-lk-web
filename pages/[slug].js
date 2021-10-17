@@ -5,6 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { useTranslations } from 'use-intl';
 import { useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
 
 const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
 
@@ -15,8 +16,7 @@ const ContactForm = () => {
         <div>
             <div className="card shadow-lg w-auto">
                 <div className="card-body bg-gray-50">
-                    <form name="contact" method="POST">
-                        <input type="hidden" name="form-name" value="contact" />
+                    <form name="contact" method="POST" action="/api/forms/contact" enctype="multipart/form-data">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">{t('name')}<RequiredMark/></span>
@@ -31,7 +31,7 @@ const ContactForm = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">{t('message')}</span>
+                                <span className="label-text">{t('message')}<RequiredMark/></span>
                             </label> 
                             <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
                         </div>
@@ -55,8 +55,7 @@ const SubmitForm = () => {
                 <h3>{t('section_details_title')}</h3>
                 <p>{t('section_details_text')}</p>
             </div>
-            <form name="submission" method="POST">
-                <input type="hidden" name="form-name" value="submission" />
+            <form name="submission" method="POST" action="/api/forms/submission" enctype="multipart/form-data">
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">{t('details_age_label')}<RequiredMark/></span>
@@ -182,11 +181,34 @@ const SubmitForm = () => {
 
 const Page = (props) => {
 
+    const { query } = useRouter();
+
     const components = {Head, ContactForm, SubmitForm};
+    console.log(query)
     return (
         <>
             <Header  sub={props.slug}/>
             <main className={"container mx-auto px-6 py-1 pb-6 flex-grow h-full"}>
+                {query.success == "true" ? (
+                <div class="alert alert-info my-8">
+                    <div class="flex-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>                          
+                        </svg> 
+                        <label>Success</label>
+                    </div>
+                </div>
+                ) : []}
+                {query.success == "false" ? (
+                <div class="alert alert-error my-8">
+                    <div class="flex-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>                          
+                        </svg> 
+                        <label>Failed, please try again later</label>
+                    </div>
+                </div>
+                ) : []}
                 <article className="prose lg:prose-xl mt-3">
                     <MDXRemote {...props.content} components={components}/>
                 </article>
