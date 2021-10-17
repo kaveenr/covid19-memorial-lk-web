@@ -27,4 +27,27 @@ export default class ZeptoClient {
         }
 
     }
+
+    static async sendTemplateMail(params) {
+
+        const body = {
+            bounce_address: 'bounces@bounce.srilankac19memorial.org',
+            from: ZeptoClient.FROM_ADDRESS,
+            ...params
+        }
+        
+        const response = await fetch('https://api.zeptomail.com/v1.1/email/template', {
+            method: 'post',
+            body: JSON.stringify(body),
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Zoho-enczapikey ${process.env["ZohoAPIKey"]}`
+            }
+        });
+
+        if (!response.ok) {
+            throw Error(`ZeptoMail responded with ${response.status} ${response.statusText}`);
+        }
+
+    }
 }
