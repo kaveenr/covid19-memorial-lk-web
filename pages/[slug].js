@@ -37,6 +37,11 @@ const ContactForm = () => {
                             </label> 
                             <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
                         </div>
+                        <br/>
+                        <div
+                            className="h-captcha"
+                            data-sitekey={`${process.env.hCaptchaSiteKey}`}
+                        />
                         <div className="form-control pt-8">
                             <button type="submit" className="btn">{t('submit')}</button> 
                         </div>

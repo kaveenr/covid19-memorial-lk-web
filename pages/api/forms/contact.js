@@ -1,3 +1,4 @@
+import { validateCaptchaResponse } from '../../../utils/captcha';
 import { AUDIENCE_INFO } from '../../../utils/constants';
 import { fieldsToEmail, parseFrom, toZeptoAttach } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
@@ -10,6 +11,16 @@ export default async function contactForm(req, res) {
     const { fields } = await parseFrom(req);
     const refererURI = new URL(req.headers.referer);
     const sessionId = emailId();
+
+    const isValid = await validateCaptchaResponse(fields).catch((err) => {
+        console.error(err);
+        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+    });
+
+    if (!isValid) {
+        console.warn(`Unable to verify captcha`);
+        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+    }
 
     const config = {
         to: AUDIENCE_INFO,
