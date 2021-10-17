@@ -84,7 +84,7 @@
         "submit" : "submit"
     },
     "formSubmissionSuccess": {
-        "completed": "Your Data Was Recorded, Reference code is {ref}",
-        "failed": "Sorry unable to store record, please try again later"
+        "completed": "Thank you for taking the time to make this submission. It’s been recorded successfully. Your reference number is {ref}. Please save it for future purposes",
+        "failed": "Sorry we were unable to store your submission. Please try again later and contact us if you continue to face issues."
     }
 }
