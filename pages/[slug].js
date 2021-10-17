@@ -55,7 +55,7 @@ const SubmitForm = () => {
                 <h3>{t('section_details_title')}</h3>
                 <p>{t('section_details_text')}</p>
             </div>
-            <form name="contact" method="POST">
+            <form name="submission" method="POST">
                 <input type="hidden" name="form-name" value="submission" />
                 <div className="form-control">
                     <label className="label">
