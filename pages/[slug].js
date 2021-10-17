@@ -138,7 +138,7 @@ const SubmitForm = () => {
                     <label className="label">
                         <span className="label-text">{t('submitterPhone_label')}</span>
                     </label> 
-                    <input type="email" name="submitterPhone" className="input" required/>
+                    <input type="text" name="submitterPhone" className="input"/>
                 </div>
 
                 <div className="form-control pt-10">
