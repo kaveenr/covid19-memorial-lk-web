@@ -23,10 +23,10 @@ export default async function contactForm(req, res) {
 
     try {
         await ZeptoClient.sendMail(config);
-        res.redirect(`${refererURI.pathname}?success=true&requestId=${sessionId}`);
+        res.redirect(303,`${refererURI.pathname}?success=true&requestId=${sessionId}`);
     } catch (err) {
         console.error(err);
-        res.redirect(`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
     }
 }
 
