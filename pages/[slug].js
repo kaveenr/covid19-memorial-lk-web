@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { useTranslations } from 'use-intl';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
 
