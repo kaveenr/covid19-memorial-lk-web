@@ -57,5 +57,30 @@
         "genderMale": "Male",
         "genderFemale": "Female",
         "resetFilters": "Reset Filters"
+    },
+    "submitForm": {
+        "section_consent_title": "Before you begin",
+        "section_consent_1": "I hereby confirm that I'm a family member of the deceased or that the family of the deceased have given me their permission to make this submission on their behalf.",
+        "section_consent_2": "I have documents that can verify the information I'm submitting (ex- death certificate or obituary)",
+        "section_consent_3": "I hereby allow the team of Sri Lanka Covid-19 Memorial to store and process this data for the purpose of verifying the information submitted by me.",
+        "consent_checkbox_label": "I agree to the above prerequisites",
+        "section_details_title": "Details of the deceased person",
+        "section_details_text": "Please share with us the following details about the deceased person. The mandatory details will be displayed on the memorial website and the name will be displayed only if you give consent below.",
+        "details_age_label": "Age of the deceased person",
+        "gender_label": "Gender of the deceased person",
+        "location_label": "Village or city the deceased person was from",
+        "dateOfDeath_label": "Date of death",
+        "name_label": "Name of the deceased person",
+        "displayName_label": "Display their name on the memorial website",
+        "occupation_label": "Occupation of the deceased person",
+        "photoFile_label": "Photograph of person",
+        "detailText_label": "Anything else you want to share about the deceased person",
+        "section_verification_title": "Verification of details",
+        "section_verification_text": "These details are only for our reference. They will not be displayed on the memorial website or published or shared beyond our team.",
+        "proofFile_label": "Upload Death Certificate/any other proof",
+        "submitterName_label": "Your Name",
+        "submitterEmail_label": "Your Email",
+        "submitterPhone_label": "Phone Number (If unreachable via email)",
+        "submit" : "submit"
     }
 }
