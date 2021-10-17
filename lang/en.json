@@ -82,5 +82,9 @@
         "submitterEmail_label": "Your Email",
         "submitterPhone_label": "Phone Number (If unreachable via email)",
         "submit" : "submit"
+    },
+    "formSubmissionSuccess": {
+        "completed": "Your Data Was Recorded, Reference code is {ref}",
+        "failed": "Sorry unable to store record, please try again later"
     }
 }

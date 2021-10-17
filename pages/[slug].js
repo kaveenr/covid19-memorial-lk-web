@@ -6,6 +6,8 @@ import { MDXRemote } from 'next-mdx-remote'
 import { useTranslations } from 'use-intl';
 import { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
 
@@ -182,9 +184,9 @@ const SubmitForm = () => {
 const Page = (props) => {
 
     const { query } = useRouter();
+    const t = useTranslations('formSubmissionSuccess');
 
     const components = {Head, ContactForm, SubmitForm};
-    console.log(query)
     return (
         <>
             <Header  sub={props.slug}/>
@@ -192,20 +194,16 @@ const Page = (props) => {
                 {query.success == "true" ? (
                 <div class="alert alert-info my-8">
                     <div class="flex-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>                          
-                        </svg> 
-                        <label>Success</label>
+                        <FontAwesomeIcon icon={faInfoCircle} size="1x" className='mr-2' />
+                        <label>{t('completed', {ref: query.requestId})}</label>
                     </div>
                 </div>
                 ) : []}
                 {query.success == "false" ? (
                 <div class="alert alert-error my-8">
                     <div class="flex-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>                          
-                        </svg> 
-                        <label>Failed, please try again later</label>
+                        <FontAwesomeIcon icon={faInfoCircle} size="lg" className='mr-2' />
+                        <label>{t('failed')}</label>
                     </div>
                 </div>
                 ) : []}

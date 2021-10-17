@@ -25,10 +25,10 @@ export default async function submissionForm(req, res) {
 
     try {
         await ZeptoClient.sendMail(config);
-        res.redirect(`${refererURI.pathname}?success=true`);
+        res.redirect(`${refererURI.pathname}?success=true&requestId=${sessionId}`);
     } catch (err) {
         console.error(err);
-        res.redirect(`${refererURI.pathname}?success=false`);
+        res.redirect(`${refererURI.pathname}?success=false&requestId=${sessionId}`);
     }
 }
 
