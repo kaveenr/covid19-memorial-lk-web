@@ -16,8 +16,6 @@ const MyDocument = () => {
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
             />
-            {/* hCaptcha */}
-            <script src="https://js.hcaptcha.com/1/api.js" async defer />
             <script
                 dangerouslySetInnerHTML={{
                     __html: `

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import CaptchaForm from '../components/CaptchaForm';
 
 const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
 
@@ -37,14 +38,7 @@ const ContactForm = () => {
                             </label> 
                             <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
                         </div>
-                        <br/>
-                        <div
-                            className="h-captcha"
-                            data-sitekey={`${process.env.hCaptchaSiteKey}`}
-                        />
-                        <div className="form-control pt-8">
-                            <button type="submit" className="btn">{t('submit')}</button> 
-                        </div>
+                        <CaptchaForm submitText={t('submit')}/>
                     </form>
                 </div>
             </div>
@@ -147,9 +141,7 @@ const SubmitForm = () => {
                     <input type="text" name="submitterPhone" className="input"/>
                 </div>
 
-                <div className="form-control pt-10">
-                    <button type="submit" className="btn">{t('submit')}</button> 
-                </div>
+                <CaptchaForm submitText={t('submit')}/>
             </form>
         </>
     )
@@ -249,11 +241,11 @@ export async function getStaticProps({locale, params}) {
     const mdxSource = await serialize(source)
     return {
         props: {
-        slug: params.slug, 
-        content: mdxSource,
-        messages: {
-            ...require(`../lang/${locale}.json`),
-        },
+            slug: params.slug, 
+            content: mdxSource,
+            messages: {
+                ...require(`../lang/${locale}.json`),
+            }
         }
     };
 }

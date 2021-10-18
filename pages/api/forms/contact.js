@@ -1,6 +1,6 @@
 import { validateCaptchaResponse } from '../../../utils/captcha';
 import { AUDIENCE_INFO } from '../../../utils/constants';
-import { fieldsToEmail, parseFrom, toZeptoAttach } from '../../../utils/formHandling';
+import { parseFrom } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
 import ZeptoClient from '../../../utils/zeptomail';
 
@@ -34,8 +34,7 @@ export default async function contactForm(req, res) {
         merge_info: {
             ...fields,
             ref: sessionId
-        },
-        htmlbody: fieldsToEmail(`Contact Us Form ID: ${sessionId}`, fields),
+        }
     }
 
     try {
