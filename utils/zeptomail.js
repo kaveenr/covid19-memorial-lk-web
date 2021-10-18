@@ -5,7 +5,7 @@ export default class ZeptoClient {
         name: "Sri Lanka C19 Memorial Automated Emails"
     }
 
-    static async sendMail(params) {
+    static async sendTemplateMail(params) {
 
         const body = {
             bounce_address: 'bounces@bounce.srilankac19memorial.org',
@@ -13,12 +13,12 @@ export default class ZeptoClient {
             ...params
         }
         
-        const response = await fetch('https://api.zeptomail.com/v1.1/email', {
+        const response = await fetch('https://api.zeptomail.com/v1.1/email/template', {
             method: 'post',
             body: JSON.stringify(body),
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': `Zoho-enczapikey ${process.env["ZohoAPIKey"]}`
+                'Authorization': `Zoho-enczapikey ${process.env["NEXT_ZOHO_API_KEY"]}`
             }
         });
 

@@ -29,20 +29,7 @@ async function toZeptoAttach(files) {
     return attachments;
 }
 
-function fieldsToEmail(title, obj) {
-    return `
-        <h3>${title}</h3>
-        <hr/>
-        <table>
-            ${toPairs(obj).map((i) => {
-                return `<tr><td>${i[0]}</td><td>${i[1]}</td></tr>`
-            }).join("\n")}
-        </table>
-    `;
-}
-
 export {
     parseFrom,
     toZeptoAttach,
-    fieldsToEmail
 }
