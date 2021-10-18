@@ -18,7 +18,7 @@ export default class ZeptoClient {
             body: JSON.stringify(body),
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': `Zoho-enczapikey ${process.env["ZohoAPIKey"]}`
+                'Authorization': `Zoho-enczapikey ${process.env["NEXT_ZOHO_API_KEY"]}`
             }
         });
 
