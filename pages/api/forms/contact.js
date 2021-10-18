@@ -1,5 +1,4 @@
 import { validateCaptchaResponse } from '../../../utils/captcha';
-import { AUDIENCE_INFO } from '../../../utils/constants';
 import { parseFrom } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
 import ZeptoClient from '../../../utils/zeptomail';
@@ -23,7 +22,13 @@ export default async function contactForm(req, res) {
     }
 
     const config = {
-        to: AUDIENCE_INFO,
+        to: [
+            {
+                email_address: {
+                    address: process.env.NEXT_AUDIENCE_INFO_EMAIL,
+                }
+            }
+        ],
         reply_to: [
             {
                 address: fields.email,

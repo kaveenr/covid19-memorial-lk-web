@@ -1,6 +1,5 @@
 import { validateCaptchaResponse } from '../../../utils/captcha';
-import { AUDIENCE_SUBMISSIONS } from '../../../utils/constants';
-import { fieldsToEmail, parseFrom, toZeptoAttach } from '../../../utils/formHandling';
+import { parseFrom, toZeptoAttach } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
 import ZeptoClient from '../../../utils/zeptomail';
 
@@ -24,7 +23,13 @@ export default async function submissionForm(req, res) {
     }
 
     const config = {
-        to: AUDIENCE_SUBMISSIONS,
+        to: [
+            {
+                email_address: {
+                    address: process.env.NEXT_AUDIENCE_SUBMISSIONS_EMAIL,
+                }
+            }
+        ],
         reply_to: [
             {
                 address: fields.submitterEmail,
