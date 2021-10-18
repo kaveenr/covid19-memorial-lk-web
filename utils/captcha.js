@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 async function validateCaptchaResponse(res) {
 
     const params = new URLSearchParams();

@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export default class ZeptoClient {
 
     static FROM_ADDRESS = {
