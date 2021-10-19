@@ -39,6 +39,7 @@ export default async function submissionForm(req, res) {
         mail_template_key: TEMPLATE_KEY,
         merge_info: {
             ...fields,
+            displayName: fields.displayName === "on" ? "Yes" : "No",
             ref: sessionId
         },
         attachments: attachments
