@@ -13,12 +13,12 @@ export default async function submissionForm(req, res) {
     const sessionId = emailId();
 
     const isValid = await validateCaptchaResponse(fields).catch((err) => {
-        console.error(err);
+        console.error(`Unable to call captcha verification service ${err}`);
         res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
     });
 
     if (!isValid) {
-        console.warn(`Unable to verify captcha`);
+        console.warn(`Unable to verify captcha for request ${sessionId}`);
         res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
     }
 
@@ -39,16 +39,18 @@ export default async function submissionForm(req, res) {
         mail_template_key: TEMPLATE_KEY,
         merge_info: {
             ...fields,
+            displayName: fields.displayName === "on" ? "Yes" : "No",
             ref: sessionId
         },
         attachments: attachments
     }
 
     try {
-        await ZeptoClient.sendTemplateMail(config);
+        const mailId = await ZeptoClient.sendTemplateMail(config);
+        console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
         res.redirect(303,`${refererURI.pathname}?success=true&requestId=${sessionId}`);
     } catch (err) {
-        console.error(err);
+        console.error(`ZeptoEmail request failed for request ${sessionId} wth reason ${err}`);
         res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
     }
 }

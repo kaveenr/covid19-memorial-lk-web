@@ -26,5 +26,7 @@ export default class ZeptoClient {
             throw Error(`ZeptoMail responded with ${response.status} ${response.statusText}`);
         }
 
+        const responseDetail = await response.json();
+        return responseDetail['request_id'];
     }
 }

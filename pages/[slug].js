@@ -90,7 +90,7 @@ const SubmitForm = () => {
                 <div className="form-control pt-2">
                     <label className="label">
                         <span className="label-text">{t('displayName_label')}<RequiredMark/></span>
-                        <input type="checkbox" name="displayName" defaultChecked class="checkbox"/>
+                        <input type="checkbox" name="displayName" class="checkbox"/>
                     </label> 
                 </div>
                 <div className="form-control">
