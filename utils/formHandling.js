@@ -19,7 +19,7 @@ async function toZeptoAttach(files) {
 
     let attachments = values(files).filter((item) => item.size != 0).map((item) => {
         const fileBuf  = readFileSync(item.path);
-        const b64Content = fileBuf.toString('base64');
+        const b64Content = Buffer.from(fileBuf).toString('base64');;
         return {
             name: item.name,
             mime_type: item.type,
