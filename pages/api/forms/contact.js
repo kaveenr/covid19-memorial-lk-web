@@ -44,7 +44,7 @@ export default async function contactForm(req, res) {
 
     try {
         const mailId = await ZeptoClient.sendTemplateMail(config);
-        console.error(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
+        console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
         res.redirect(303,`${refererURI.pathname}?success=true&requestId=${sessionId}`);
     } catch (err) {
         console.error(`ZeptoEmail request failed for request ${sessionId} wth reason ${err}`);
