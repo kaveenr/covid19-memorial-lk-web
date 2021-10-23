@@ -5,7 +5,7 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -25,11 +25,13 @@ const ContactForm = () => {
         formState: { isDirty, isValid, errors, isSubmitting },
         reset
     } = useForm({ mode: "onChange" });
+    const captcha = useRef();
 
     const onSubmit = async data => {
         const res = await axios.post("/api/forms/contact", data);
         setApiResponse(res.data);
         reset();
+        captcha.current.resetCaptcha();
         window.scrollTo({
             top: 0,
             left: 0,
@@ -93,6 +95,7 @@ const ContactForm = () => {
                         <br />
                         <HCaptcha required {...register("h-captcha-response", { required: true })} 
                             onVerify={(v) => { setValue("h-captcha-response", v, { shouldValidate: true }) }} 
+                            ref={captcha}
                             sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} 
                             languageOverride={locale} />
                         <div className="form-control pt-8">
