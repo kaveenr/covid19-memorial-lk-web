@@ -92,13 +92,15 @@ const ContactForm = () => {
                             </label>) : []}
                         </div>
                         <br />
-                        <HCaptcha required {...register("h-captcha-response", { required: true })} 
-                            onVerify={(v) => { setValue("h-captcha-response", v, { shouldValidate: true }) }} 
-                            ref={captcha}
-                            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} 
-                            languageOverride={locale} />
+                        <div className={errors["h-captcha-response"] ? "border-2 border-red-500" : ""}>
+                            <HCaptcha required {...register("h-captcha-response", { required: true })} 
+                                onVerify={(v) => { setValue("h-captcha-response", v, { shouldValidate: true }) }} 
+                                ref={captcha}
+                                sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                                languageOverride={locale} />
+                        </div>
                         {errors["h-captcha-response"] ? (<label class="label">
-                            <span class="label-text-alt">{fv('requiredField')}</span>
+                                <span class="label-text-alt">{fv('requiredField')}</span>
                         </label>) : []}
                         <div className="form-control pt-8">
                             <button type="submit" className="btn" >
