@@ -1,5 +1,4 @@
 import { validateCaptchaResponse } from '../../../utils/captcha';
-import { parseFrom } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
 import ZeptoClient from '../../../utils/zeptomail';
 
@@ -7,18 +6,27 @@ const TEMPLATE_KEY = "2d6f.56fc02bbae752795.k1.f8cc6140-2f6c-11ec-b4a4-5254000e3
 
 export default async function contactForm(req, res) {
 
-    const { fields } = await parseFrom(req);
-    const refererURI = new URL(req.headers.referer);
+    const fields = req.body;
     const sessionId = emailId();
 
     const isValid = await validateCaptchaResponse(fields).catch((err) => {
         console.error(`Unable to call captcha verification service ${err}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_01"
+        });
+        return;
     });
 
     if (!isValid) {
         console.warn(`Unable to verify captcha for request ${sessionId}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_02"
+        });
+        return;
     }
 
     const config = {
@@ -42,18 +50,20 @@ export default async function contactForm(req, res) {
         }
     }
 
-    try {
-        const mailId = await ZeptoClient.sendTemplateMail(config);
-        console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
-        res.redirect(303,`${refererURI.pathname}?success=true&requestId=${sessionId}`);
-    } catch (err) {
+    const mailId = await ZeptoClient.sendTemplateMail(config).catch((err) => {
         console.error(`ZeptoEmail request failed for request ${sessionId} wth reason ${err}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
-    }
-}
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_03"
+        });
+        return;
+    });
 
-export const config = {
-    api: {
-        bodyParser: false,
-    }
-};
+    console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
+
+    res.status(200).json({
+        success: true,
+        sessionId: sessionId
+    });
+}

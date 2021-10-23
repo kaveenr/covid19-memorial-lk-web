@@ -4,186 +4,18 @@ import Header from '../components/Header';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { useTranslations } from 'use-intl';
-import { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import CaptchaForm from '../components/CaptchaForm';
-
-const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
-
-const ContactForm = () => {
-
-    const t = useTranslations('contactForm');
-    return (
-        <div>
-            <div className="card shadow-lg w-auto">
-                <div className="card-body bg-gray-50">
-                    <form name="contact" method="POST" action="/api/forms/contact" enctype="multipart/form-data">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('name')}<RequiredMark/></span>
-                            </label> 
-                            <input type="text" name="name" placeholder={t('name_placeholder')} className="input" required/>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('email')}<RequiredMark/></span>
-                            </label> 
-                            <input type="email" name="email" placeholder={t('email_placeholder')} className="input" required/>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('message')}<RequiredMark/></span>
-                            </label> 
-                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
-                        </div>
-                        <CaptchaForm submitText={t('submit')}/>
-                    </form>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-const SubmitForm = () => {
-    const t = useTranslations('submitForm');
-    const [preDone, setPreDone] = useState(false);
-
-    const formContent = (<>
-            <hr/>
-            <div className='prose pb-4'>
-                <h3>{t('section_details_title')}</h3>
-                <p>{t('section_details_text')}</p>
-            </div>
-            <form name="submission" method="POST" action="/api/forms/submission" enctype="multipart/form-data">
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('details_age_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="number" name="age" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('gender_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="text" name="gender" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('location_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="text" name="location" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('dateOfDeath_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="date" name="dateOfDeath" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('name_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="text" name="name" className="input" required/>
-                </div>
-                <div className="form-control pt-2">
-                    <label className="label">
-                        <span className="label-text">{t('displayName_label')}<RequiredMark/></span>
-                        <input type="checkbox" name="displayName" class="checkbox"/>
-                    </label> 
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('occupation_label')}</span>
-                    </label> 
-                    <input type="text" name="occupation" className="input"/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('photoFile_label')}</span>
-                    </label> 
-                    <input type="file" accept="image/*" name="photoFile" className=""/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('detailText_label')}</span>
-                    </label> 
-                    <textarea className="textarea h-24 textarea-bordered" name="detailText"></textarea>
-                </div>
-                <hr/>
-                <div className='prose pb-4'>
-                    <h3>{t('section_verification_title')}</h3>
-                    <p>{t('section_verification_text')}</p>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('proofFile_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="file" name="proofFile" accept="image/*,.pdf,.doc,.docx" className="" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('submitterName_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="text" name="submitterName" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('submitterEmail_label')}<RequiredMark/></span>
-                    </label> 
-                    <input type="email" name="submitterEmail" className="input" required/>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">{t('submitterPhone_label')}</span>
-                    </label> 
-                    <input type="text" name="submitterPhone" className="input"/>
-                </div>
-
-                <CaptchaForm submitText={t('submit')}/>
-            </form>
-        </>
-    )
-
-    const consentSection = (
-        <div>
-            <div className='prose'>
-                <h3>{t('section_consent_title')}</h3>
-                <ul>
-                    <li>{t('section_consent_1')}</li>
-                    <li>{t('section_consent_2')}</li>
-                    <li>{t('section_consent_3')}</li>
-                </ul>
-            </div>
-            <div className="form-control">
-                <label className="label">
-                    <span className="label-text">{t('consent_checkbox_label')}<RequiredMark/></span>
-                    <input type="checkbox" name="displayName"  class="checkbox" onChange={(e) => {
-                        setPreDone(e.target.checked)
-                    }}/>
-                </label> 
-            </div>
-        </div>
-    )
-    return (
-        <div>
-            <div className="card shadow-lg w-auto">
-                <div className="card-body bg-gray-50">
-                    {consentSection}
-                    {preDone ? formContent : []}
-                </div>
-            </div>
-        </div>
-    );
-}
+import ContactForm from '../components/forms/ContactForm';
+import SubmissionForm from '../components/forms/SubmissionForm';
 
 const Page = (props) => {
 
     const { query } = useRouter();
     const t = useTranslations('formSubmissionSuccess');
 
-    const components = {Head, ContactForm, SubmitForm};
+    const components = {Head, ContactForm, SubmissionForm};
     return (
         <>
             <Header  sub={props.slug}/>

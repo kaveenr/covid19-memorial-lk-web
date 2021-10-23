@@ -85,6 +85,10 @@
     },
     "formSubmissionSuccess": {
         "completed": "Thank you for taking the time to make this submission. It’s been recorded successfully. Your reference number is {ref}. Please save it for future purposes",
-        "failed": "Sorry we were unable to store your submission. Please try again later and contact us if you continue to face issues."
+        "failed": "Sorry we were unable to store your submission. Please try again later and contact us if you continue to face issues. code: ${err}",
+        "requiredField": "This field is required",
+        "notValidEmail": "Not a valid email",
+        "notValidNumber": "Not a valid number",
+        "requiredFile": "This is a required file"
     }
 }
