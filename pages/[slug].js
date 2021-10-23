@@ -9,42 +9,9 @@ import { useRouter } from 'next/dist/client/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import CaptchaForm from '../components/CaptchaForm';
+import ContactForm from '../components/forms/ContactFrom';
 
 const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
-
-const ContactForm = () => {
-
-    const t = useTranslations('contactForm');
-    return (
-        <div>
-            <div className="card shadow-lg w-auto">
-                <div className="card-body bg-gray-50">
-                    <form name="contact" method="POST" action="/api/forms/contact" enctype="multipart/form-data">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('name')}<RequiredMark/></span>
-                            </label> 
-                            <input type="text" name="name" placeholder={t('name_placeholder')} className="input" required/>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('email')}<RequiredMark/></span>
-                            </label> 
-                            <input type="email" name="email" placeholder={t('email_placeholder')} className="input" required/>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">{t('message')}<RequiredMark/></span>
-                            </label> 
-                            <textarea className="textarea h-24 textarea-bordered" name="message" placeholder={t('message_placeholder')} required></textarea>
-                        </div>
-                        <CaptchaForm submitText={t('submit')}/>
-                    </form>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 const SubmitForm = () => {
     const t = useTranslations('submitForm');
