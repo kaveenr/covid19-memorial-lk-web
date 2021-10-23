@@ -199,9 +199,10 @@ const SubmissionForm = () => {
                                 <label className="label">
                                     <span className="label-text">{t('proofFile_label')}<RequiredMark/></span>
                                 </label> 
-                                <input {...register("proofFile", { required: true})}
-                                    className={`input ${errors.proofFile ? "input-error" : ""}`}
-                                    type="file" accept="image/*,.pdf,.doc,.docx" className=""/>
+                                <div className={errors.proofFile ? "border-2 border-red-500" : ""}>
+                                    <input {...register("proofFile", { required: true})}
+                                        type="file" accept="image/*,.pdf,.doc,.docx" className=""/>
+                                </div>
                                 {errors.proofFile ? (<label class="label">
                                     <span class="label-text-alt">{fv('requiredFile')}</span>
                                 </label>) : []}
