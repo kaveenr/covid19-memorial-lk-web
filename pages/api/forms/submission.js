@@ -9,7 +9,6 @@ export default async function submissionForm(req, res) {
 
     const { fields, files } = await parseFrom(req);
     const attachments = await toZeptoAttach(files);
-    const refererURI = new URL(req.headers.referer);
     const sessionId = emailId();
 
     const isValid = await validateCaptchaResponse(fields).catch((err) => {

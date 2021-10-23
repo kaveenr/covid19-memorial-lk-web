@@ -17,9 +17,9 @@ const ContactForm = () => {
     const { locale } = useRouter();
     const [apiResponse, setApiResponse] = useState(undefined);
 
-    const { 
-        register, 
-        handleSubmit, 
+    const {
+        register,
+        handleSubmit,
         setValue,
         formState: { isDirty, isValid, errors, isSubmitting },
         reset
@@ -44,14 +44,14 @@ const ContactForm = () => {
                 <div class="alert alert-info my-8">
                     <div class="flex-1">
                         <FontAwesomeIcon icon={faInfoCircle} size="1x" className='mr-2' />
-                        <label>{fv('completed', {ref: apiResponse.sessionId})}</label>
+                        <label>{fv('completed', { ref: apiResponse.sessionId })}</label>
                     </div>
                 </div>
             ) : (
                 <div class="alert alert-error my-8">
                     <div class="flex-1">
                         <FontAwesomeIcon icon={faInfoCircle} size="lg" className='mr-2' />
-                        <label>{fv('failed', {err: apiResponse.error})}</label>
+                        <label>{fv('failed', { err: apiResponse.error })}</label>
                     </div>
                 </div>
             )) : []}
@@ -62,8 +62,8 @@ const ContactForm = () => {
                             <label className="label">
                                 <span className="label-text">{t('name')}<RequiredMark /></span>
                             </label>
-                            <input {...register("name", { required: true })} 
-                                placeholder={t('name_placeholder')} 
+                            <input {...register("name", { required: true })}
+                                placeholder={t('name_placeholder')}
                                 className={`input ${errors.name ? "input-error" : ""}`} />
                             {errors.name ? (<label class="label">
                                 <span class="label-text-alt">{fv('requiredField')}</span>
@@ -73,8 +73,8 @@ const ContactForm = () => {
                             <label className="label">
                                 <span className="label-text">{t('email')}<RequiredMark /></span>
                             </label>
-                            <input {...register("email", { required: true, pattern: EMAIL_REGEX })} 
-                                placeholder={t('email_placeholder')} 
+                            <input {...register("email", { required: true, pattern: EMAIL_REGEX })}
+                                placeholder={t('email_placeholder')}
                                 className={`input ${errors.email ? "input-error" : ""}`} />
                             {errors.email ? (<label class="label">
                                 <span class="label-text-alt">{fv('notValidEmail')}</span>
@@ -84,8 +84,8 @@ const ContactForm = () => {
                             <label className="label">
                                 <span className="label-text">{t('message')}<RequiredMark /></span>
                             </label>
-                            <textarea {...register("message", { required: true })} 
-                                className={`textarea h-24 textarea-bordered ${errors.message ? "input-error" : ""}`} 
+                            <textarea {...register("message", { required: true })}
+                                className={`textarea h-24 textarea-bordered ${errors.message ? "input-error" : ""}`}
                                 placeholder={t('message_placeholder')} />
                             {errors.message ? (<label class="label">
                                 <span class="label-text-alt">{fv('requiredField')}</span>
@@ -93,14 +93,14 @@ const ContactForm = () => {
                         </div>
                         <br />
                         <div className={errors["h-captcha-response"] ? "border-2 border-red-500" : ""}>
-                            <HCaptcha required {...register("h-captcha-response", { required: true })} 
-                                onVerify={(v) => { setValue("h-captcha-response", v, { shouldValidate: true }) }} 
+                            <HCaptcha required {...register("h-captcha-response", { required: true })}
+                                onVerify={(v) => { setValue("h-captcha-response", v, { shouldValidate: true }) }}
                                 ref={captcha}
                                 sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
                                 languageOverride={locale} />
                         </div>
                         {errors["h-captcha-response"] ? (<label class="label">
-                                <span class="label-text-alt">{fv('requiredField')}</span>
+                            <span class="label-text-alt">{fv('requiredField')}</span>
                         </label>) : []}
                         <div className="form-control pt-8">
                             <button type="submit" className="btn" >
