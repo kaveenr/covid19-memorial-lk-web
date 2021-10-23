@@ -6,10 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import { useState, useRef } from 'react';
+import { EMAIL_REGEX } from '../../utils/constants';
+import RequiredMark from './RequiredMark';
 
-const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const RequiredMark = () => (<span className="font-bold text-red-400 ml-1">*</span>);
 const ContactForm = () => {
 
     const t = useTranslations('contactForm');
@@ -98,8 +97,11 @@ const ContactForm = () => {
                             ref={captcha}
                             sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} 
                             languageOverride={locale} />
+                        {errors["h-captcha-response"] ? (<label class="label">
+                            <span class="label-text-alt">{fv('requiredField')}</span>
+                        </label>) : []}
                         <div className="form-control pt-8">
-                            <button type="submit" className="btn" disabled={!isDirty || !isValid}>
+                            <button type="submit" className="btn" >
                                 {!isSubmitting ? t('submit') : (
                                     <FontAwesomeIcon className="animate-spin" icon={faSpinner} size="2x" />
                                 )}

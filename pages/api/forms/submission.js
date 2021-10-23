@@ -14,12 +14,22 @@ export default async function submissionForm(req, res) {
 
     const isValid = await validateCaptchaResponse(fields).catch((err) => {
         console.error(`Unable to call captcha verification service ${err}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_01"
+        });
+        return;
     });
 
     if (!isValid) {
         console.warn(`Unable to verify captcha for request ${sessionId}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_02"
+        });
+        return;
     }
 
     const config = {
@@ -45,14 +55,22 @@ export default async function submissionForm(req, res) {
         attachments: attachments
     }
 
-    try {
-        const mailId = await ZeptoClient.sendTemplateMail(config);
-        console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
-        res.redirect(303,`${refererURI.pathname}?success=true&requestId=${sessionId}`);
-    } catch (err) {
+    const mailId = await ZeptoClient.sendTemplateMail(config).catch((err) => {
         console.error(`ZeptoEmail request failed for request ${sessionId} wth reason ${err}`);
-        res.redirect(303,`${refererURI.pathname}?success=false&requestId=${sessionId}`);
-    }
+        res.status(400).json({
+            success: false,
+            sessionId: sessionId,
+            error: "ERR_FRM_03"
+        });
+        return;
+    });
+
+    console.log(`ZeptoEmail request succeeded for request "${sessionId}" with reference "${mailId}"`);
+
+    res.status(200).json({
+        success: true,
+        sessionId: sessionId
+    });
 }
 
 export const config = {
