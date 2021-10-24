@@ -1,8 +1,7 @@
 import { validateCaptchaResponse } from '../../../utils/captcha';
-import { uploadFiles } from '../../../utils/google/fileRepository';
+import { uploadFiles, getAuth, appendSheet } from '../../../utils/google/gSuiteBridge';
 import { parseFrom, toZeptoAttach } from '../../../utils/formHandling';
 import { emailId } from '../../../utils/nanoIdProvider';
-import { saveEntry } from '../../../utils/google/submissionRespostiory';
 import ZeptoClient from '../../../utils/zeptomail';
 
 const TEMPLATE_KEY = "2d6f.56fc02bbae752795.k1.0d893620-2fcd-11ec-8c5d-52540064429e.17c91b06282";
@@ -33,7 +32,8 @@ export default async function submissionForm(req, res) {
         return;
     }
 
-    const uploadRef = await uploadFiles(files).catch((err) => {
+    const auth = getAuth();
+    const uploadRef = await uploadFiles(auth, files).catch((err) => {
         console.error(`GDrive upload for request ${sessionId} failed with reason ${err}`);
         res.status(500).json({
             success: false,
@@ -41,19 +41,18 @@ export default async function submissionForm(req, res) {
             error: "ERR_FRM_UPLOAD_FAIL"
         });
     });
-
     let reqData = {
         ref: sessionId,
         ...fields,
-        displayName: fields.displayName === "on" ? "Yes" : "No",
-        proofFile: uploadRef.proofFile ? `https://drive.google.com/file/d/${uploadRef.proofFile.id}/view`: undefined,
-        photoFile: uploadRef.photoFile ? `https://drive.google.com/file/d/${uploadRef.photoFile.id}/view`: undefined,
+        displayName: fields.displayName === "true" ? "Yes" : "No",
+        proofFile: uploadRef.proofFile ? uploadRef.proofFile.url: undefined,
+        photoFile: uploadRef.photoFile ? uploadRef.photoFile.url: undefined,
     };
 
     delete reqData.consent;
     delete reqData["h-captcha-response"];
 
-    await saveEntry(reqData).catch((err) => {
+    await appendSheet(auth, reqData).catch((err) => {
         console.error(`Gsheet append for request ${sessionId} failed with reason ${err}`);
         res.status(500).json({
             success: false,
