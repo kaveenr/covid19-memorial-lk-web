@@ -45,13 +45,24 @@ const SubmissionForm = () => {
             }
         });
         setApiResponse(res.data);
-        reset();
-        captcha.current.resetCaptcha();
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+    }
+
+    if (apiResponse) {
+        return apiResponse.success ? (
+            <div class="alert alert-info my-8">
+                <div class="flex-1">
+                    <FontAwesomeIcon icon={faInfoCircle} size="1x" className='mr-2' />
+                    <label>{fv('completed', { ref: apiResponse.sessionId })}</label>
+                </div>
+            </div>
+        ) : (
+            <div class="alert alert-error my-8">
+                <div class="flex-1">
+                    <FontAwesomeIcon icon={faInfoCircle} size="lg" className='mr-2' />
+                    <label>{fv('failed', { err: apiResponse.error })}</label>
+                </div>
+            </div>
+        );
     }
 
     return (
