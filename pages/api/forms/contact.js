@@ -11,10 +11,10 @@ export default async function contactForm(req, res) {
 
     const isValid = await validateCaptchaResponse(fields).catch((err) => {
         console.error(`Unable to call captcha verification service ${err}`);
-        res.status(400).json({
+        res.status(500).json({
             success: false,
             sessionId: sessionId,
-            error: "ERR_FRM_01"
+            error: "ERR_FRM_CAPTCHA_UNREACHABLE"
         });
         return;
     });
@@ -24,7 +24,7 @@ export default async function contactForm(req, res) {
         res.status(400).json({
             success: false,
             sessionId: sessionId,
-            error: "ERR_FRM_02"
+            error: "ERR_FRM_CAPTCHA_FAIL"
         });
         return;
     }
@@ -52,10 +52,10 @@ export default async function contactForm(req, res) {
 
     const mailId = await ZeptoClient.sendTemplateMail(config).catch((err) => {
         console.error(`ZeptoEmail request failed for request ${sessionId} wth reason ${err}`);
-        res.status(400).json({
+        res.status(500).json({
             success: false,
             sessionId: sessionId,
-            error: "ERR_FRM_03"
+            error: "ERR_FRM_MAIL_FAIL"
         });
         return;
     });
