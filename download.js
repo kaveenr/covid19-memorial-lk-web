@@ -7,7 +7,7 @@ async function fetchData(){
 
   const rawGeoData = await request({
     'method': 'GET',
-    'url': 'https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/data/data/geo_processed_latest.json',
+    'url': 'https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/geo_processed_latest.json',
   }).catch((e)=> {
     throw Error("Unable to fetch geo data");
   }).then((response) => (JSON.parse(response.body)));
@@ -16,7 +16,7 @@ async function fetchData(){
 
   const rawData = await request({
     'method': 'GET',
-    'url': 'https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/data/data/covid19_deaths_latest.json',
+    'url': 'https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/covid19_deaths_latest.json',
   }).catch((e)=> {
     throw Error("Unable to fetch vax centers");
   }).then((response) => (JSON.parse(response.body)));
