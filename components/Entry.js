@@ -19,9 +19,9 @@ const Entry = ({ data, onClick }) => {
         return `https://github.com/kaveenr/covid19-memorial-lk-data/blob/data/data/dig_reports/${i.sourceRef}.md`
     }
 
-    let name = `Name Unknown`
+    let name = t('name_unknown');
     if (data.attributes.detail) {
-        name = data.attributes.detail.name || `Name Unpublished`
+        name = data.attributes.detail.name || t('name_unpublished');
     }
 
     return (
