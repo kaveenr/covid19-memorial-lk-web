@@ -31,7 +31,8 @@
         "city": "City",
         "source": "Source",
         "gotoSource": "Go to Source",
-        "source_DGI_PR_DOCS": "Department of Government Information"
+        "source_DGI_PR_DOCS": "Department of Government Information",
+        "source_VERIFIED_SUBMISSION": "Verified Submission"
     },
     "contactForm": {
         "name": "Name",

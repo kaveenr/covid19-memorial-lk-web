@@ -31,7 +31,8 @@
     "city": "நகரம்",
     "source": "ஆதாரம்",
     "gotoSource": "மூலத்திற்கு செல்ல",
-    "source_DGI_PR_DOCS": "அரசு தகவல் துறை"
+    "source_DGI_PR_DOCS": "அரசு தகவல் துறை",
+    "source_VERIFIED_SUBMISSION": "சரிபார்க்கப்பட்ட சமர்ப்பிப்பு"
   },
   "contactForm": {
     "name": "பெயர்",

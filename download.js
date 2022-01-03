@@ -40,7 +40,7 @@ async function fetchData(){
     return rawGeoData.districts.find((d) => (d.name_en === key))
   }
 
-  const data = rawData.map((i) => ({
+  const data = rawData.reverse().map((i) => ({
     type: "entry",
     id: i.indexKey,
     attributes: {
