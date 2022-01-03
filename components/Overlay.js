@@ -26,18 +26,26 @@ const Overlay = ({ data, close }) => {
                         </button>
                     </div>
                     <div className={`flex flex-col items-center relative py-4`}>
-                        <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
+                        {data.attributes.detail && data.attributes.detail.name ? (<p className=" text-ms font-bold py-4">{data.attributes.detail.name}</p>) : []}
+                        {data.attributes.detail && data.attributes.detail.photo ? (<img src={data.attributes.detail.photo} className="grayscale w-1/2 p-2"/>) : 
+                            (<Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>)}
                         <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
                         <p className="text-xs font-semibold">{t('place', {place: data.attributes.city})}</p>
                         <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
                     </div>
+                    {data.attributes.detail && data.attributes.detail.description ? (
+                        <p className="text-center pb-4">{data.attributes.detail.description}</p>
+                    ) : []}
+                    {data.attributes.detail && data.attributes.detail.occupation ? (
+                            <p><b>{t('occupation')}:</b> {data.attributes.detail.occupation}</p>
+                    ) : []}
                     <p><b>{t('province')}:</b> {data.attributes.province}</p>
                     <p><b>{t('district')}:</b> {data.attributes.district}</p>
                     {data.attributes.city ? (<p><b>{t('city')}:</b> {data.attributes.city}</p>) : []}
                     <p><b>{t('source')}:</b> {t(`source_${data.attributes.sourceType}`)}</p>
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <a class="btn btn-sm" href={getLink(data.attributes)} target="_blank">{t('gotoSource')}</a> 
-                    </div>
+                    </div> */}
                 </div>
             ) : []}
         </>

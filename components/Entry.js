@@ -21,11 +21,7 @@ const Entry = ({ data, onClick }) => {
 
     let name = `Name Unknown`
     if (data.attributes.detail) {
-        if (data.attributes.detail.name != ""){
-            name = `${data.attributes.detail.name}`
-        } else {
-            name = `Name Unpublished`
-        }
+        name = data.attributes.detail.name || `Name Unpublished`
     }
 
     return (
@@ -35,10 +31,10 @@ const Entry = ({ data, onClick }) => {
                 event("expand_user", "detail", "Expanded Entry", data.id);
             }}>
             <a className={`py-4 flex flex-col items-center relative ${detailVisible ? "scale-110" : ""} transition-transform duration-700 ease-out cursor-pointer`}>
-                <p className="text-xs font-semibold text-center text-gray-700 h-8">{truncate(name, {length:40})}</p>
+                <p className="text-xs text-center text-slate-700 h-8">{truncate(name.toUpperCase(), {length:80})}</p>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
                 <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
-                <p className="text-xs font-semibold">{t('place', {place: truncate(data.attributes.city, {length:12})})}</p>
+                <p className="text-xs font-semibold">{t('place', {place: truncate(data.attributes.city, {length:30})})}</p>
                 <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
             </a>
             {detailVisible ? (
@@ -53,9 +49,6 @@ const Entry = ({ data, onClick }) => {
                         <p><b>{t('district')}:</b> {data.attributes.district}</p>
                         {data.attributes.city ? (<p><b>{t('city')}:</b> {data.attributes.city}</p>) : []}
                         <p><b>{t('source')}:</b> {t(`source_${data.attributes.sourceType}`)}</p>
-                        {/* <div className="mt-4">
-                            <a class="btn btn-sm" href={getLink(data.attributes)} target="_blank">{t('gotoSource')}</a> 
-                        </div> */}
                     </div>
                 </div>
             ) : []}

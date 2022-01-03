@@ -81,7 +81,7 @@ export default function Home(props) {
         <Overlay data={selected} close={()=>{setSelected(null)}}/>
         <InfiniteScroll
             dataLength={items.length}
-            className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2"
+            className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-8 gap-2"
             next={()=> {
               setOffset((offset) => (offset + 1));
               event("home_page", "pagination", "Loaded More", offset);
