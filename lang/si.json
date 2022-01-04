@@ -31,7 +31,11 @@
     "city": "නගරය",
     "source": "මූලාශ්‍රය",
     "gotoSource": "මූලාශ්‍රය වෙත යන්න",
-    "source_DGI_PR_DOCS": "රජයේ ප්‍රවෘත්ති දෙපාර්තමේන්තුව"
+    "occupation": "රැකියාව",
+    "source_DGI_PR_DOCS": "රජයේ ප්‍රවෘත්ති දෙපාර්තමේන්තුව",
+    "source_VERIFIED_SUBMISSION": "සත්‍යාපිත ඉදිරිපත් කිරීම",
+    "name_unknown": "නම නොදන්නා",
+    "name_unpublished": "නම ප්‍රකාශනය නොකළ"
   },
   "contactForm": {
     "name": "නම",

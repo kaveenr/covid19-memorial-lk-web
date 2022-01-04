@@ -1,4 +1,4 @@
-import { last } from 'lodash';
+import { last, omitBy, isNil } from 'lodash';
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
@@ -20,14 +20,22 @@ import { event } from '../utils/gtag';
 export default function Home(props) {
 
   const queryClient = useQueryClient()
-  const { locale } = useRouter();
+  const { locale, query, replace } = useRouter();
   const t = useTranslations('home');
   const intl = useIntl();
 
-  const [items, setItems] = useState([]);
+  // State
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState(null);
   const [selected, setSelected] = useState(null);
+
+  // Set State From Query Parameters On First Load
+  useEffect(() => {
+    setSelected(query.selected || undefined);
+    setFilter(query)
+  }, [ query ])
+
+  const [items, setItems] = useState([]);
   const [hasNext, setHasNext] = useState(true);
 
   // Fetch Entries, on initial offset use rendered dataset.
@@ -35,6 +43,13 @@ export default function Home(props) {
     () => (fetchEntries(offset, filter, locale)),
     { keepPreviousData: true, staleTime: 5000 }
   )
+
+  // Function For Updating Query Params
+  const queryUpdate = (d) => {
+    let nd = omitBy({...query, ...d}, isNil)
+    let params = new URLSearchParams(nd);
+    replace(`?${params.toString()}`, undefined, { shallow: true }); 
+  }
 
   // On data fetch changes
   useEffect(() => {
@@ -76,12 +91,14 @@ export default function Home(props) {
           </div>
         </div>
         <div className="pt-1">
-          <Filter setFilter={(f) => {setFilter(f)}}/>
+          <Filter setFilter={(f) => {queryUpdate(f)}}/>
         </div>
-        <Overlay data={selected} close={()=>{setSelected(null)}}/>
+        <Overlay id={selected} close={()=>{
+          queryUpdate({selected: null})
+        }}/>
         <InfiniteScroll
             dataLength={items.length}
-            className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 xl:grid-cols-10 gap-2"
+            className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-8 gap-2"
             next={()=> {
               setOffset((offset) => (offset + 1));
               event("home_page", "pagination", "Loaded More", offset);
@@ -99,7 +116,7 @@ export default function Home(props) {
               </div>
             }
           >
-            {items.map((i) => (<Entry key={i.id} data={i} onClick={() => {setSelected(i)}}/>))}
+            {items.map((i) => (<Entry key={i.id} data={i} onClick={() => { queryUpdate({selected: i.id})}}/>))}
         </InfiniteScroll>
       </main>
       <Footer/>
