@@ -34,7 +34,7 @@ const Entry = ({ data, onClick }) => {
                 <p className="text-xs text-center text-slate-700 h-8">{truncate(name.toUpperCase(), {length:80})}</p>
                 <Image src={FlowerImg} width="150" height="150" loading="lazy" className="flex-grow w-full"/>
                 <p className="text-sm font-semibold mt-1">{data.attributes.ageValue}, {t(data.attributes.gender)}</p>
-                <p className="text-xs font-semibold">{t('place', {place: truncate(data.attributes.city, {length:30})})}</p>
+                <p className="text-xs font-semibold text-center">{t('place', {place: truncate(data.attributes.city, {length:15})})}</p>
                 <p className="text-xs">{intl.formatDateTime(new Date(data.attributes.deathDate), {dateStyle: "medium"})}</p>
             </a>
             {detailVisible ? (
